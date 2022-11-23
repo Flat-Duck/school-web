@@ -29,31 +29,7 @@
                                 <option value="{{$room->id }}" {{$room->id == old('room_id') ? ' selected="selected"' : '' }} >{{$room->name}}</option>
                             @endforeach
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">المادة</label>
-                        <select  id="subject" name="subject_id" class="form-control">
-                            @foreach($subjects as $k=> $subject)
-                                <option value="{{$subject->id }}" {{$subject->id == old('subject_id') ? ' selected="selected"' : '' }} >{{$subject->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="day">اليوم</label>
-                        <select  id="day" name="day" class="form-control">
-                            @foreach($days as $k=> $day)
-                                <option value="{{$day}}" {{$day == old('day') ? ' selected="selected"' : '' }} >{{$day}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="period">الحصة</label>
-                        <select  id="period" name="period" class="form-control">
-                            @foreach($periods as $k=> $period)
-                                <option value="{{$period }}" {{$period == old('period') ? ' selected="selected"' : '' }} >{{$period}}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    </div>                   
                 </div>
 
                 <div class="box-footer">
