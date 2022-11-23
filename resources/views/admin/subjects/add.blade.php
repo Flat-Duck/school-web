@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="grade">الفصول</label>
+                        <label for="grade">الصفوف</label>
                         <select  id="grade" name="grade_id[]"  class="form-control select2" multiple>
                             @foreach($grades as $k=> $grade)
                                 <option value="{{$grade->id }}" {{$grade->id == old('grade_id') ? ' selected="selected"' : '' }} >{{$grade->name}}</option>

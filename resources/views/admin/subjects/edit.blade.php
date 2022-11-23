@@ -28,7 +28,7 @@
 
 
                     <div class="form-group">
-                        <label for="grade">الفصول</label>
+                        <label for="grade">الصفوف</label>
                         <select  id="grade" name="grade_id[]" multiple class="form-control">
                             @foreach($grades as $k=> $grade)
                                 <option value="{{$grade->id }}" {{in_array($grade->id, $subject->grades->pluck('id')->flatten()->toArray()) ? ' selected="selected"' : '' }} >{{$grade->name}}</option>
