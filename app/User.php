@@ -43,6 +43,10 @@ class User extends Authenticatable
         return $this->hasMany(Student::class,'email','email');
     }
 
+    public function chats(){
+        return $this->hasMany(Chat::class);
+    }
+
      /**
      * Returns the paginated list of resources
      *

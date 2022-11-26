@@ -36,8 +36,12 @@ Route::name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
         // Dashboard
         Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
 
+        
+        Route::get('/chats', 'ChatController@index')->name('chats.index');
+        Route::get('/chats/{user}', 'ChatController@show')->name('chats.show');
+        Route::post('/chats/{user}', 'ChatController@send')->name('chats');
+        
         Route::resource('centers', 'CenterController');
-
         Route::resource('notes', 'NoteController');
         Route::resource('attendances', 'AttendanceController');
         Route::resource('teachers', 'TeacherController');

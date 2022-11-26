@@ -25,6 +25,8 @@ Route::name("api.")->namespace('API')->group(function () {
 
     Route::group(['middleware' => ['auth:api']], function () {
 
+        Route::get('chats', 'HomeController@chats');
+        Route::post('/chats', 'HomeController@send_chat');
         Route::get('main','HomeController@main');
         Route::get('{student}/notes','HomeController@notes');
         Route::get('{student}/attendances','HomeController@attendances');

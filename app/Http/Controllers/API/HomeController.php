@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Student;
+use Illuminate\Http\Request;
+use App\Chat;
 
 class HomeController extends ApiController
 {
@@ -69,5 +71,44 @@ class HomeController extends ApiController
         $user->save();
 
         return $this->sendResponse("password Changed Successful", $user);
+    }
+
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function chats(Request $request)
+    {
+        $allChats =  $request->user()->chats;
+
+        foreach ($allChats as $k => $chat) {
+            if ($chat->sender_id != $request->user()->id) {
+                $chat['ismine'] = false;
+            }else{
+                $chat['ismine'] = true;
+            }
+            $chat['date'] = $chat->created_at->diffForHumans();
+            $chats[$k] = $chat;
+        }
+        return $this->sendResponse("User Chat Loaded Succefully", ['chats' => $chats]);
+        
+    }
+
+    public function send_chat(Request $request)
+    {
+       // dd($request->all());
+        $chat = new Chat;
+
+        $chat->user_id = $request->user()->id;
+        $chat->sender_id = $request->user()->id;
+        $chat->admin_id = $request->admin_id;
+        $chat->message = $request->message;        
+        $chat->save();
+        $chat['date'] = $chat->created_at->diffForHumans();
+        $chat['ismine'] = true;
+        return $this->sendResponse("User Chat Loaded Succefully", ['chat' => $chat]);
+
+        
     }
 }
