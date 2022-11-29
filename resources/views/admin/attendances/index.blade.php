@@ -28,7 +28,7 @@
                         <tr>
                             <td>{{ $k+1}}</td>
                             <td>{{ $attendance->day }}</td>
-                            <td>{{ $attendance->student_id }}</td>
+                            <td>{{ $attendance->student->name }}</td>
                             <td>
                                 <a href="{{ route('admin.attendances.edit', ['attendance' => $attendance->id]) }}">
                                    <span class="btn btn-warning">   <i class="fa fa-pencil-square-o"></i></span>

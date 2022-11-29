@@ -51,6 +51,10 @@ Route::name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
         Route::resource('rooms', 'RoomController');
         Route::resource('exams', 'ExamController');
         Route::resource('admins', 'AdminsController');
+        Route::resource('marks', 'MarkController');
+        Route::get('marks/add_mark/{student}', 'MarkController@add_mark')->name('add_mark');
+        Route::post('marks/add_mark/{student}', 'MarkController@store_mark')->name('save_mark');
+      
         Route::get('time_tables/add_period/{time_table}', 'TimeTableController@add_period')->name('add_period');
         Route::post('time_tables/add_period/{time_table}', 'TimeTableController@store_period')->name('save_period');
         Route::resource('time_tables', 'TimeTableController');

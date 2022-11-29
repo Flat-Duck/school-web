@@ -30,7 +30,7 @@
                         <label for="grade">الصف</label>
                         <select  id="grade" name="grade_id" class="form-control">
                             @foreach($grades as $k=> $grade)
-                                <option value="{{$grade->id }}" {{$grade->id == old('grade_id',$student->room->grade_id) ? ' selected="selected"' : '' }} >{{$grade->name}}</option>                                
+                                <option value="{{$grade->id }}" {{$grade->id == old('grade_id',$time_table->grade_id) ? ' selected="selected"' : '' }} >{{$grade->name}}</option>                                
                             @endforeach
                         </select>
                     </div>
@@ -38,14 +38,14 @@
                         <label for="room">الفصل</label>
                         <select  id="room" name="room_id" class="form-control">
                             @foreach($rooms as $k=> $room)
-                                <option value="{{$room->id }}" {{$room->id == old('room_id',$student->room_id) ? ' selected="selected"' : '' }} >{{$room->name}}</option>
+                                <option value="{{$room->id }}" {{$room->id == old('room_id',$time_table->room_id) ? ' selected="selected"' : '' }} >{{$room->name}}</option>
                                 
                             @endforeach
                         </select>
                     </div>                    
                     <div class="form-group">
                         <label for="birth_date">تاريخ الميلاد</label>
-                        <input type="date"
+                        <input type="text"
                             class="form-control"
                             name="birth_date"
                             required
@@ -57,17 +57,17 @@
                     <div class="form-group">
                         <label for="gender">الجنس</label>
                         <select  id="gender" name="gender" class="form-control">
-                            <option  value="ذكر"  {{ 'ذكر' == old('gender',$student->gender) ? ' selected="selected"' : '' }}>
+                            <option  value="ذكر"  {{ 'ذكر' == old('gender',$teacher->gender) ? ' selected="selected"' : '' }}>
                                 ذكر</option>
                             
-                            <option value="أنثى"  {{ 'أنثى' == old('gender',$student->gender) ? ' selected="selected"' : '' }}>
+                            <option value="أنثى"  {{ 'أنثى' == old('gender',$teacher->gender) ? ' selected="selected"' : '' }}>
                                 أنثى</option>
                             
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="email">البريد الالكتروني الخاص بولي الامر</label>
-                        <input type="email"
+                        <input type="text"
                             class="form-control"
                             name="email"
                             required

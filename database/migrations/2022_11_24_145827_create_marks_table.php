@@ -15,6 +15,10 @@ class CreateMarksTable extends Migration
     {
         Schema::create('marks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('student_id');
+            $table->foreignId('subject_id');
+            $table->double('value')->nullable()->default(null);
+            $table->enum('period', ['الاولى','الثانية','الثالثة']);
             $table->timestamps();
         });
     }

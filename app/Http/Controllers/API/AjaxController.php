@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Exam;
 use App\Room;
 use App\Grade;
+use App\Student;
 use App\Subject;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,16 @@ class AjaxController extends ApiController
         $data['rooms'] = $grade->rooms;
         $data['subjects'] = $grade->subjects;
 
-        return $this->sendResponse("Swipes Loaded", $data);    
+        return $this->sendResponse("Data Loaded", $data);    
+    }
+    public function marks(Request $request)
+    {
+        $student_id = $request->student_id;
+        $student = Student::findOrFail($student_id);
+        
+        $data['subjects'] = $student->subjects;
+
+        return $this->sendResponse("Data Loaded", $data);    
     }
     public function time_table(Request $request)
     {
@@ -28,27 +38,27 @@ class AjaxController extends ApiController
         $data['rooms'] = $grade->rooms;
         $data['subjects'] = $grade->subjects;
 
-        return $this->sendResponse("Swipes Loaded", $data);    
+        return $this->sendResponse("Data Loaded", $data);    
     }
 
     public function swipes()
     {
         $swipes = request()->user()->swipes;
 
-        return $this->sendResponse("Swipes Loaded", $swipes);
+        return $this->sendResponse("Data Loaded", $swipes);
     }
     public function shots()
     {
         $shots = request()->user()->shots;
 
-        return $this->sendResponse("Shots Loaded", $shots);
+        return $this->sendResponse("Data Loaded", $shots);
     }
 
     public function centers()
     {
         $centers = Center::all();
 
-        return $this->sendResponse("Centers Loaded", $centers);
+        return $this->sendResponse("Data Loaded", $centers);
     }
     public function profile()
     {

@@ -24,14 +24,14 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="discription">المحتوى</label>
+                        <label for="content">المحتوى</label>
                         <input type="textarea"
                             class="form-control"
-                            name="discription"
+                            name="content"
                             required
                             placeholder="المحتوى"
-                            value="{{ old('discription', $note->discription) }}"
-                            id="discription"
+                            value="{{ old('content', $note->content) }}"
+                            id="content"
                         >
                     </div>               
                 </div>

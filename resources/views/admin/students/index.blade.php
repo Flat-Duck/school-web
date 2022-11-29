@@ -19,7 +19,7 @@
                     <tr>
                         <th>#</th>
                         <th>الاسم</th>
-                        {{-- <th>الصف/الفصل</th> --}}
+                        <th>الصف /الفصل</th>
                         <th>تاريخ الميلاد</th>
                         <th>الجنس</th>
                         <th>هاتف ولي الامر</th>
@@ -31,6 +31,7 @@
                         <tr>
                             <td>{{ $k+1}}</td>
                             <td>{{ $student->name }}</td>
+                            <td>{{ $student->grade->name.' / '.$student->room->name}}</td>
                             <td>{{ $student->birth_date }}</td>                            
                             <td>{{ $student->gender }}</td>                            
                             <td>{{ $student->phone }}</td>                            

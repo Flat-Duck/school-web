@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::name("api.")->namespace('API')->group(function () {
     Route::post('/login', 'AuthController@login');
     Route::GET('/ajax/exam', 'AjaxController@exam');
+    Route::GET('/ajax/marks', 'AjaxController@marks');
     Route::GET('/ajax/time_table', 'AjaxController@time_table');
 
     Route::group(['middleware' => ['auth:api']], function () {

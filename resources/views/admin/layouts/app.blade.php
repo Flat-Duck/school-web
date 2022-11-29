@@ -11,7 +11,7 @@
     <link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet">
 
     {{-- You can put page wise internal css style in styles section --}}
-    @stack('styles')
+    @yield('styles')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -118,7 +118,7 @@
                             <span>إدارة الطلبة</span>
                         </a>
                     </li>
-                    <li class="treeview {{(($page == 'rooms') || ($page =='grades') || ($page =='subjects') || ($page =='time_tables')|| ($page =='attendances')|| ($page =='exams')) ? 'menu-open' : '' }}" style="height: auto;">
+                    <li class="treeview {{(($page == 'rooms') || ($page =='grades') || ($page =='subjects') || ($page =='time_tables')|| ($page =='attendances')|| ($page =='marks')|| ($page =='exams')) ? 'menu-open' : '' }}" style="height: auto;">
                         <a href="#">
                             <i class="fa  fa-cogs"></i> 
                             <span>إدارة شؤون الطلبة </span>
@@ -126,19 +126,19 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
-                        <ul class="treeview-menu" style="display: {{(($page == 'rooms') || ($page =='grades') || ($page =='subjects') || ($page =='time_tables')|| ($page =='attendances')|| ($page =='exams')) ? 'block' : 'none' }}">
-                            <li {{ $page == 'rooms' ? ' class=active' : '' }}>
-                                <a href="{{ route('admin.rooms.index') }}">
-                                    <i class="fa fa-building"></i>
-                                    <span>الفصول</span>
-                                </a>
-                            </li>
+                        <ul class="treeview-menu" style="display: {{(($page == 'rooms') || ($page =='grades') || ($page =='subjects') || ($page =='time_tables')|| ($page =='attendances')|| ($page =='marks')|| ($page =='exams')) ? 'block' : 'none' }}">
                             <li {{ $page == 'grades' ? ' class=active' : '' }}>
                                 <a href="{{ route('admin.grades.index') }}">
                                     <i class="fa fa-building"></i>
                                     <span>الصفوف</span>
                                 </a>
                             </li>
+                            <li {{ $page == 'rooms' ? ' class=active' : '' }}>
+                                <a href="{{ route('admin.rooms.index') }}">
+                                    <i class="fa fa-building"></i>
+                                    <span>الفصول</span>
+                                </a>
+                            </li>                           
                             <li {{ $page == 'subjects' ? ' class=active' : '' }}>
                                 <a href="{{ route('admin.subjects.index') }}">
                                     <i class="fa fa-building"></i>
@@ -163,12 +163,24 @@
                                     <span>مواعيد الاختبارات</span>
                                 </a>
                             </li>
+                            <li {{ $page == 'marks' ? ' class=active' : '' }}>
+                                <a href="{{ route('admin.marks.index') }}">
+                                    <i class="fa fa-building"></i>
+                                    <span>درجات الطلبة </span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li {{ $page == 'notes' ? ' class=active' : '' }}>
                         <a href="{{ route('admin.notes.index') }}">
                             <i class="fa fa-building"></i>
                             <span>الملاحضات</span>
+                        </a>
+                    </li>   
+                    <li {{ $page == 'chats' ? ' class=active' : '' }}>
+                        <a href="{{ route('admin.chats.index') }}">
+                            <i class="fa fa-building"></i>
+                            <span>استفسارات اولياء الامور</span>
                         </a>
                     </li>                
                 </ul>

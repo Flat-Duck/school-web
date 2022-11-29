@@ -1,13 +1,13 @@
 @extends('admin.layouts.app', ['page' => 'rooms'])
 
-@section('title', 'الفصل')
+@section('title', 'الفصول الدراسية')
 
 @section('content')
 <div class="row">
     <div class="col-xs-12">
         <div class="box box-success">
             <div class="box-header with-border">
-                <h3 class="box-title">الفصل</h3>
+                <h3 class="box-title">الفصول الدراسية</h3>
 
                 <a class="pull-right btn btn-sm btn-success" href="{{ route('admin.rooms.create') }}">
                     إضافة فصل جديد
@@ -28,7 +28,7 @@
                         <tr>
                             <td>{{ $k+1}}</td>
                             <td>{{ $room->name }}</td>
-                            <td>{{ $room->grade_id }}</td>
+                            <td>{{ $room->grade->name }}</td>
                             <td>
                                 <a href="{{ route('admin.rooms.edit', ['room' => $room->id]) }}">
                                    <span class="btn btn-warning">   <i class="fa fa-pencil-square-o"></i></span>

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Grade;
 use App\Student;
 use App\Http\Controllers\Controller;
+use App\Room;
+use App\User;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -27,7 +30,10 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('admin.students.add');
+        $grades = Grade::all();
+        $rooms = Room::all();
+
+        return view('admin.students.add',compact('grades','rooms'));
     }
 
     /**
@@ -36,9 +42,19 @@ class StudentController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store()
-    {
+    {        
         $validatedData = request()->validate(Student::validationRules());
         $student = Student::create($validatedData);
+        $user = User::where('email',$student->email)->first();
+        if(is_null($user)){
+            $user = User::firstOrCreate(
+                ['name'=> substr(strstr($student->name," "), 1),
+                'email'=> request()->email,
+                'password'=> bcrypt($student->phone)]
+            );
+        }
+        
+        dd($user);
         return redirect()->route('admin.students.index')->with([
                 'type' => 'success',
                 'message' => 'Student added'
@@ -54,7 +70,10 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return view('admin.students.edit', compact('student'));
+        $grades = Grade::all();
+        $rooms = Room::all();
+      //  dd($student);
+        return view('admin.students.edit', compact('student','grades','rooms'));
     }
 
     /**
@@ -66,7 +85,7 @@ class StudentController extends Controller
     public function update(Student $student)
     {
         $validatedData = request()->validate(
-            Student::abc($student->id)
+            Student::ValidationRules($student->id)
         );
 
         $student->update($validatedData);

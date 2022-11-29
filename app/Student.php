@@ -17,6 +17,7 @@ class Student extends Model
         'gender',
         'email',
         'phone',
+        'room_id',
        // 'is_active',
     ];
 
@@ -37,7 +38,7 @@ class Student extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'birth_date' => 'timestamp',
+        // 'birth_date' => 'date',
     ];
 
     /**
@@ -52,6 +53,7 @@ class Student extends Model
             'birth_date' => 'required|date',
             'gender' => 'required',
             'phone' => 'required',
+            'room_id' => 'required',
             'email' => 'required|email',
            // 'is_active'  => 'boolean',
         ];
@@ -67,6 +69,10 @@ class Student extends Model
 
     public function notes(){
         return $this->hasMany(Note::class);
+    }
+
+    public function marks(){
+        return $this->hasMany(Mark::class);
     }
     
     
@@ -89,6 +95,9 @@ class Student extends Model
     public function subjects(){
         return $this->grade->subjects();
     }
+    public function marksGruoped(){
+        return $this->marks->groupBy('subject_id');
+    }
 
     public function getRoomNameAttribute(){
         return $this->room->name;
@@ -96,6 +105,12 @@ class Student extends Model
     
     public function getGradeNameAttribute(){
         return $this->room->grade->name;
+    }
+
+    public function IsBeginner(){
+        $grade = $this->room->grade->name;
+      return  in_array($grade, ['أول','ثاني','ثالت']);
+
     }
 
     /**

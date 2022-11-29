@@ -24,7 +24,7 @@ class Attendance extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'day' => 'date',
+        //'day' => 'date',
     ];
 
 

@@ -14,19 +14,15 @@
                     <tr>
                         <th>#</th>
                         <th>الاسم</th>
-                        <th>الجنس</th>
-                        <th>نوع السكري</th>
-                        <th>رقم الهاتف</th>
+                        <th>البريد الالكتروني</th>
                         <th>مراسلة</th>
                     </tr>
 
                     @forelse ($users as $k=> $user)
                         <tr>
                             <td>{{ $k+1 }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->gender }}</td>
-                            <td>{{ $user->diabetes_type }}</td>
-                            <td>{{ $user->phone }}</td>
+                            <td>{{ $user->name }}</td>                            
+                            <td>{{ $user->email }}</td>
                             <td>
                                 <a href="{{ route('admin.chats.show', ['user' => $user->id]) }}">
                                     <i class="fa fa-pencil-square-o"></i>
