@@ -54,7 +54,7 @@ class StudentController extends Controller
             );
         }
         
-        dd($user);
+        //dd($user);
         return redirect()->route('admin.students.index')->with([
                 'type' => 'success',
                 'message' => 'Student added'

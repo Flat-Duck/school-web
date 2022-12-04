@@ -18,7 +18,7 @@ class CreateStudentsTable extends Migration
             $table->string('name');
             $table->date('birth_date');
             $table->enum('gender', ["ذكر","أنثى"]);
-            $table->foreignId('grade_id');
+            $table->foreignId('room_id');
             $table->string('email', 400);
             $table->string('phone');
             $table->boolean('is_active')->default(true);
