@@ -13,7 +13,7 @@
     <div class="col-xs-12">
         <div class="box box-default ">
             <div class="box-header with-border">
-                <h3 class="box-title">درجات الطلبة من صف أول الى صف ثالث</h3>
+                <h3 class="box-title">درجات الطلبة</h3>
             </div>
             
             <div class="box-body">
@@ -43,16 +43,43 @@
                             </tr>
                         </tbody>
                         <tbody id="group-of-rows-{{$student->id}}" class="collapse">
+                            @php
+                                $total[0]=0;    
+                                $total[1]=0;    
+                            @endphp
                             @foreach ($student->marksGruoped() as $k=> $marks)
                                 <tr>
+                                    @php
+                                        $total[0] += $marks[0]->value;
+                                        $total[1] += $marks[1]->value
+                                    @endphp
+                                    
                                     <td>{{ $marks[0]->subject->name }}</td>
-                                    @foreach ($marks as $k=> $mark)
-                                    <td>{{ $mark->value }}</td>
-                                    @endforeach                                    
+                                        @foreach ($marks as $k=> $mark)
+                                            <td>{{ $mark->value }}</td>
+                                        @endforeach
+                                        @if (count($marks) == 2)
+                                            @php
+                                                $tot = $marks->sum('value');
+                                            @endphp
+                                                  @if ($tot > 49)
+                                                  <td style="background-color: lightgreen">{{ $tot }}</td>
+                                                  @else
+                                                  <td style="background-color: lightcoral">{{ $tot }}</td>
+                                                  @endif                                            
+                                        @endif
                                 </tr>
                             @endforeach
-                        </tbody>
-                        
+                            <tr style="background-color: lightblue">
+                                <td>المجموع</td>
+                                <td>{{ $total[0] }}</td>
+                                <td>{{ $total[1] }}</td>
+                            </tr>
+                            <tr style="background-color: skyblue">
+                                <td> المجموع النهائي</td>
+                                <td>{{ $total[0]  + $total[1] }}</td>
+                            </tr>
+                        </tbody>                        
                     @endforeach
                 </table>
             </div>

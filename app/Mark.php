@@ -20,8 +20,7 @@ class Mark extends Model
     public static function periods(){
         return [
             'الفترة الاولى',
-            'الفترة الثانية',
-            'الفترة الثالثة'            
+            'الفترة الثانية'      
         ];
     }
     public function student()
