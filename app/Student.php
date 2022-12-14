@@ -3,9 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Student extends Model
 {
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
@@ -18,6 +19,7 @@ class Student extends Model
         'email',
         'phone',
         'room_id',
+        'n_id',
        // 'is_active',
     ];
 
@@ -55,6 +57,7 @@ class Student extends Model
             'phone' => 'required',
             'room_id' => 'required',
             'email' => 'required|email',
+            'n_id'=>'required|numeric|unique:students,n_id',
            // 'is_active'  => 'boolean',
         ];
     }
@@ -107,11 +110,11 @@ class Student extends Model
         return $this->room->grade->name;
     }
 
-    public function IsBeginner(){
-        $grade = $this->room->grade->name;
-      return  in_array($grade, ['أول','ثاني','ثالت']);
+    // public function IsBeginner(){
+    //     $grade = $this->room->grade->name;
+    //   return  in_array($grade, ['أول','ثاني','ثالت']);
 
-    }
+    // }
 
     /**
      * Returns the paginated list of resources

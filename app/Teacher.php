@@ -3,9 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Teacher extends Model
 {
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
@@ -17,6 +18,7 @@ class Teacher extends Model
         'department',
         'email',
         'phone',
+        'n_id',
         'is_active',
     ];
 
@@ -35,6 +37,8 @@ class Teacher extends Model
             'department'=> 'required|string',
             'email'=> 'required|string',
             'phone'=> 'required|string',
+            'n_id'=>'required|numeric|unique:teachers,n_id',
+
             // 'is_active' => 'boolean',
         ];
     }

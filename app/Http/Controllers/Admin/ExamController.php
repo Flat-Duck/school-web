@@ -47,7 +47,7 @@ public function store()
     $exam = Exam::create($validatedData);
     return redirect()->route('admin.exams.index')->with([
             'type' => 'success',
-            'message' => 'Exam added'
+            'message' => 'تمت الاضافة بنجاح'
         ]);
 
 }
@@ -82,7 +82,7 @@ public function update(Exam $exam)
 
     return redirect()->route('admin.exams.index')->with([
         'type' => 'success',
-        'message' => 'Exam Updated'
+        'message' => 'تم التعديل بنجاج'
     ]);
 }
 
@@ -97,7 +97,7 @@ public function destroy(Exam $exam)
     $exam->delete();
     return redirect()->route('admin.exams.index')->with([
         'type' => 'success',
-        'message' => 'Exam deleted successfully'
+        'message' => 'تم الحذف بنجاح'
     ]);
 }
 }

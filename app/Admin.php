@@ -57,7 +57,6 @@ class Admin extends Authenticatable
     {
         return [
             'name' => 'required|string',
-           // 'n_id' => 'required|numeric',
             'username' => 'required|string|unique:admins,username,'.$id,
             'email' => 'required|email|unique:admins,email,'.$id,
             'password' => 'string|nullable',

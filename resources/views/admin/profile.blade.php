@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-6">
-        <div class="box box-success">
+        <div class="box box-default ">
             <div class="box-header with-border">
                 <h3 class="box-title">تعديل الملف الشخصي </h3>
             </div>
@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-success">تحديث البيانات الشخصية</button>
+                    <button type="submit" class="btn bg-purple ">تحديث البيانات الشخصية</button>
                 </div>
             </form>
         </div>
@@ -57,7 +57,7 @@
 
     {{-- Password update --}}
     <div class="col-md-6">
-        <div class="box box-success">
+        <div class="box box-default ">
             <div class="box-header with-border">
                 <h3 class="box-title">تغيير كلمة المرور</h3>
             </div>
@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-success">تحديث كلمة المرور</button>
+                    <button type="submit" class="btn bg-purple ">تحديث كلمة المرور</button>
                 </div>
             </form>
         </div>

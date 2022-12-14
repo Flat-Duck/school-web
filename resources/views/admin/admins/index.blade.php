@@ -9,7 +9,7 @@
             <div class="box-header with-border">
                 <h3 class="box-title">المستخدمين</h3>
 
-    <a class="pull-right btn btn-primary"
+    <a class="pull-right btn bg-purple "
         href="{{ route('admin.admins.create') }}"
     >
         إضافة جديد
@@ -23,7 +23,7 @@
                     <div class="input-group margin col-md-4">
                         <input id="indexSearch" name="search" placeholder="Searsh" value="{{ $search ?? '' }}" type="text" class="form-control" spellcheck="false" data-ms-editor="true" autocomplete="off">
                         <span class="input-group-btn">                                    
-                            <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-search"></i></button>
+                            <button type="submit" class="btn bg-purple  btn-flat"><i class="fa fa-search"></i></button>
                         </span>
                     </div>                                
                 </form>

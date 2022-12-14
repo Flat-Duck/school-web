@@ -71,7 +71,7 @@ public function store_period(TimeTable $time_table, Request $request)
     //$time_table = TimeTable::create($validatedData);
     return redirect()->route('admin.time_tables.show',['time_table'=>$time_table])->with([
             'type' => 'success',
-            'message' => 'TimeTable added'
+            'message' => 'تمت الاضافة بنجاح'
         ]);
 
 }
@@ -86,7 +86,7 @@ public function store()
     $time_table = TimeTable::create($validatedData);
     return redirect()->route('admin.time_tables.index')->with([
             'type' => 'success',
-            'message' => 'TimeTable added'
+            'message' => 'تمت الاضافة بنجاح'
         ]);
 
 }
@@ -139,7 +139,7 @@ public function update(TimeTable $time_table)
 
     return redirect()->route('admin.time_tables.index')->with([
         'type' => 'success',
-        'message' => 'TimeTable Updated'
+        'message' => 'تم التعديل بنجاج'
     ]);
 }
 
@@ -154,7 +154,7 @@ public function destroy(TimeTable $time_table)
     $time_table->delete();
     return redirect()->route('admin.time_tables.index')->with([
         'type' => 'success',
-        'message' => 'TimeTable deleted successfully'
+        'message' => 'تم الحذف بنجاح'
     ]);
 }
 }

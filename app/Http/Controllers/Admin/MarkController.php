@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Grade;
 use App\Mark;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -37,7 +38,8 @@ class MarkController extends Controller
         $periods = Mark::periods();
         $students = Student::all();
         $subjects = Subject::all();
-        return view('admin.marks.add',compact('students','subjects', 'student','periods'));
+        $grades = Grade::all();
+        return view('admin.marks.add',compact('grades','students','subjects', 'student','periods'));
     }
 
     /**
@@ -46,21 +48,26 @@ class MarkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    
+     public function store_mark(Request $request)
+    { $subs = [1,2,3,4,5,6,7,8,9,10,11];
         $student = Student::findOrFail($request->student_id);
-        $mark = Mark::firstOrCreate(
-            ['student_id'=> $student->id,
-            'subject_id'=> $request->subject_id,
-            'period'=> $request->period]            
-        );
-        $mark->value = $request->value;
-        $mark->save();
+        $data = $request->only($subs);
         
-         return redirect()->route('admin.marks.index')->with([
-                 'type' => 'success',
-                 'message' => 'Mark  added'
-             ]);
+        foreach ($data as $key => $value) {
+            if($request[$key] != null) {
+                $mark = Mark::firstOrCreate(
+                    ['student_id'=> $student->id,
+                    'subject_id'=> $key,
+                    'period'=> $request->period]);   
+                $mark->value = $value;
+                $mark->save();
+            }
+        }
+        return redirect()->route('admin.marks.index')->with([
+            'type' => 'success',
+            'message' => 'تمت الاضافة بنجاح'
+        ]);
     }
 
     /**

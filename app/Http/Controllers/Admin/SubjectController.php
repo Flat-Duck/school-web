@@ -46,7 +46,7 @@ public function store()
     $subject->grades()->attach(request()->grade_id);
     return redirect()->route('admin.subjects.index')->with([
             'type' => 'success',
-            'message' => 'Subject added'
+            'message' => 'تمت الاضافة بنجاح'
         ]);
 
 }
@@ -81,7 +81,7 @@ public function update(Subject $subject)
 
     return redirect()->route('admin.subjects.index')->with([
         'type' => 'success',
-        'message' => 'Subject Updated'
+        'message' => 'تم التعديل بنجاج'
     ]);
 }
 
@@ -96,7 +96,7 @@ public function destroy(Subject $subject)
     $subject->delete();
     return redirect()->route('admin.subjects.index')->with([
         'type' => 'success',
-        'message' => 'Subject deleted successfully'
+        'message' => 'تم الحذف بنجاح'
     ]);
 }
 }

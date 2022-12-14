@@ -1,58 +1,46 @@
-@extends('admin.layouts.app', ['page' => 'time_tables'])
+@extends('admin.layouts.app', ['page' => 'marks'])
 
-@section('title', 'إضافة حصة جديدة')
+@section('title', 'إضافة درجة جديدة')
 
 @section('content')
 <div class="row">
     <div class="col-xs-12">
         <div class="box box-default ">
             <div class="box-header with-border">
-                <h3 class="box-title">إضافة حصة جديدة</h3>
+                <h3 class="box-title">إضافة درجة جديدة</h3>
             </div>
 
-            <form role="form" method="POST" enctype="multipart/form-data" action="{{ route('admin.save_period',['time_table'=>$time_table]) }}">
+            <form role="form" method="POST" enctype="multipart/form-data" action="{{ route('admin.save_mark',['student'=>$student]) }}">
                 @csrf
 
                 <div class="box-body">                   
                     <div class="form-group">
-                        <label for="grade">الصف</label>
-                        <select disabled  id="grade" name="grade_id" class="form-control">
-                            @foreach($grades as $k=> $grade)
-                                <option value="{{$grade->id }}" {{$grade->id == old('grade_id',$time_table->grade->id) ? 'selected' : '' }} >{{$grade->name}}</option>
+                        <label for="student">الصف</label>
+                        <select disabled  id="student" name="student" class="form-control">
+                            @foreach($students as $k=> $student)
+                                <option value="{{$student->id }}" {{$student->id == old('student',$student->id) ? 'selected' : '' }} >{{$student->name}}</option>
                             @endforeach
                         </select>
                     </div>
+                    <input type="hidden" name="student" value="{{$student->id}}">
                     <div class="form-group">
-                        <label for="room">الفصل</label>
-                        <select disabled  id="room" name="room_id" class="form-control">
-                            @foreach($rooms as $k=> $room)
-                                <option value="{{$room->id }}" {{ $room->id == old('room_id',$time_table->room->id) ? 'selected' : '' }} >{{$room->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">المادة</label>
-                        <select  id="subject" name="subject_id" class="form-control">
-                            @foreach($subjects as $k=> $subject)
-                                <option value="{{$subject->id }}" {{$subject->id == old('subject_id') ? ' selected="selected"' : '' }} >{{$subject->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="day">اليوم</label>
-                        <select  id="day" name="day" class="form-control">
-                            @foreach($days as $k=> $day)
-                                <option value="{{$day}}" {{$day == old('day') ? ' selected="selected"' : '' }} >{{$day}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="period">الحصة</label>
+                        <label for="period">الدرجة</label>
                         <select  id="period" name="period" class="form-control">
                             @foreach($periods as $k=> $period)
                                 <option value="{{$period }}" {{$period == old('period') ? ' selected="selected"' : '' }} >{{$period}}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="value">الدرجة</label>
+                        <input type="text"
+                            class="form-control"
+                            name="value"
+                            required
+                            placeholder="الدرجة"
+                            value="{{ old('value') }}"
+                            id="value"
+                        >
                     </div>
                 </div>
 

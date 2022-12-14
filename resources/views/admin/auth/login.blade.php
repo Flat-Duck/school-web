@@ -28,7 +28,7 @@
             </div>
 
             <div class="col-xs-4">
-                <button type="submit" class="btn btn-success btn-block btn-flat">Sign In</button>
+                <button type="submit" class="btn bg-purple  btn-block btn-flat">Sign In</button>
             </div>
         </div>
     </form>

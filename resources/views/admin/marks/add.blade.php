@@ -1,13 +1,120 @@
 @extends('admin.layouts.app', ['page' => 'marks'])
 
-@section('title', 'إضافة حصة جديدة')
+@section('title', 'إضافة درجة جديدة')
 
 @section('content')
 <div class="row">
     <div class="col-xs-12">
-        <div class="box box-success">
+        <div class="box box-default ">
             <div class="box-header with-border">
-                <h3 class="box-title">إضافة حصة جديدة</h3>
+                <h3 class="box-title">إضافة درجة جديدة</h3>
+            </div>
+
+            <form role="form" method="POST" enctype="multipart/form-data" action="{{ route('admin.save_mark',['student'=>$student]) }}">
+                @csrf
+
+                <div class="box-body">   
+                    <div class="form-group">
+                        <label for="grade">الصف</label>
+                        <select  id="grade" name="grade_id" class="form-control">
+                            @foreach($grades as $k=> $grade)
+                                <option value="{{$grade->id }}" {{$grade->id == old('grade_id') ? ' selected="selected"' : '' }} >{{$grade->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>                
+                    <div class="form-group">
+                        <label for="student">الطالب</label>
+                        <select id="students" name="student_id" class="form-control">
+                            @foreach($students as $k=> $student)
+                                <option value="{{$student->id }}" {{$student->id == old('student',$student->id) ? 'selected' : '' }} >{{$student->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <input type="hidden" name="student" value="{{$student->id}}">
+                    <div class="form-group">
+                        <label for="period">الدرجة</label>
+                        <select id="period" name="period" class="form-control">
+                            @foreach($periods as $k=> $period)
+                                <option value="{{$period }}" {{$period == old('period') ? ' selected="selected"' : '' }} >{{$period}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                <div id="marks">
+
+                </div>                    
+                </div>
+
+                <div class="box-footer">
+                    <button type="submit" class="btn bg-purple ">حفظ</button>
+
+                    <a href="{{ URL::previous() }}" class="btn btn-default">
+                        إلغاء
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
+@section('scripts')
+<script type="text/javascript">
+$(document).ready( function () {
+    loadStudents( $("#grade").val());
+   loadMarks($("#students").val());
+    $("#grade").change(function(){
+        var gradeId = $(this).val();
+        loadStudents(gradeId);
+    });
+    function loadStudents(gradeId) {
+        $.ajax({
+            url: 'http://school.test/api/ajax/students',
+            type: 'GET',
+            data: {grade_id:gradeId},
+            dataType: 'json',
+            success:function(response){
+                var students = response.data.students;
+                $("#students").empty();
+                for (var i = 0; i < students.length; i++) {
+                    var id = students[i]['id'];
+                    var name = students[i]['name'];
+                    $("#students").append("<option value='"+id+"'>"+name+"</option>");
+                }
+            }
+        });
+    }
+    function loadMarks(studentId) {
+        $.ajax({
+            url: 'http://school.test/api/ajax/marks',
+            type: 'GET',
+            data: {student_id:studentId},
+            dataType: 'json',
+            success:function(response){
+                var subjects = response.data.subjects;   
+              //  console.log(subjects);
+                $("#subject").empty();
+                for (var i = 0; i < subjects.length; i++) {                                    
+                    var id = subjects[i]['id'];
+                    var name = subjects[i]['name'];
+                    $("#marks").append('<div class="form-group"><label for='+id+'>'+name+'</label><input type="number" class="form-control" name='+id+' placeholder='+name+' value="{{ old("value") }}" id='+id+'></div>');
+                }
+            }
+        });
+    }
+});
+
+</script>
+@endsection
+
+{{-- @extends('admin.layouts.app', ['page' => 'marks']) --}}
+
+{{-- @section('title', 'إضافة درجة جديدة') --}}
+
+{{-- @section('content') --}}
+{{-- <div class="row">
+    <div class="col-xs-12">
+        <div class="box box-default ">
+            <div class="box-header with-border">
+                <h3 class="box-title">إضافة درجة جديدة</h3>
             </div>
 
             <form role="form" method="POST" enctype="multipart/form-data" action="{{ route('admin.marks.store',['student'=>$student]) }}">
@@ -24,18 +131,19 @@
                     </div>
                     <input type="hidden" name="student_id" id="student_id" value="{{$student->id}}">
                     <div class="form-group">
-                        <label for="subject">المادة</label>
+                        <label for="subject">المادة</label> 
                         <select  id="subject" name="subject_id" class="form-control">
-                            {{-- @foreach($subjects as $k=> $subject)
+                             @foreach($subjects as $k=> $subject)
                                 <option value="{{$subject->id }}" {{$subject->id == old('subject_id') ? ' selected="selected"' : '' }} >{{$subject->name}}</option>
-                            @endforeach --}}
+                            @endforeach 
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="period">الفترة</label>
                         <select  id="period" name="period" class="form-control">
                             @foreach($periods as $k=> $period)
-                                <option value="{{$period }}" {{$period == old('period') ? 'selected="selected"' : '' }} {{((!$student->IsBeginner()) && ($period == 'الفترة الثالثة'))? 'disabled': '' }} >{{$period}}</option>
+                            {{((!$student->IsBeginner()) && ($period == 'الفترة الثالثة'))? 'disabled': '' }}
+                                <option value="{{$period }}" {{$period == old('period') ? 'selected="selected"' : '' }} >{{$period}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -53,7 +161,7 @@
                 </div>
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-success">حفظ</button>
+                    <button type="submit" class="btn bg-purple ">حفظ</button>
 
                     <a href="{{ URL::previous() }}" class="btn btn-default">
                         إلغاء
@@ -89,3 +197,4 @@ $(document).ready( function () {
 
 </script>
 @endsection
+ --}}

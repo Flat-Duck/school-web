@@ -41,7 +41,7 @@ public function store()
     $grade = Grade::create($validatedData);
     return redirect()->route('admin.grades.index')->with([
             'type' => 'success',
-            'message' => 'Grade added'
+            'message' => 'تمت الاضافة بنجاح'
         ]);
 
 }
@@ -73,7 +73,7 @@ public function update(Grade $grade)
 
     return redirect()->route('admin.grades.index')->with([
         'type' => 'success',
-        'message' => 'Grade Updated'
+        'message' => 'تم التعديل بنجاج'
     ]);
 }
 
@@ -88,7 +88,7 @@ public function destroy(Grade $grade)
     $grade->delete();
     return redirect()->route('admin.grades.index')->with([
         'type' => 'success',
-        'message' => 'Grade deleted successfully'
+        'message' => 'تم الحذف بنجاح'
     ]);
 }
 }

@@ -43,7 +43,7 @@ public function store()
     $attendance = Attendance::create($validatedData);
     return redirect()->route('admin.attendances.index')->with([
             'type' => 'success',
-            'message' => 'Attendance added'
+            'message' => 'تمت الاضافة بنجاح'
         ]);
 
 }
@@ -76,7 +76,7 @@ public function update(Attendance $attendance)
 
     return redirect()->route('admin.attendances.index')->with([
         'type' => 'success',
-        'message' => 'Attendance Updated'
+        'message' => 'تم التعديل بنجاج'
     ]);
 }
 
@@ -91,7 +91,7 @@ public function destroy(Attendance $attendance)
     $attendance->delete();
     return redirect()->route('admin.attendances.index')->with([
         'type' => 'success',
-        'message' => 'Attendance deleted successfully'
+        'message' => 'تم الحذف بنجاح'
     ]);
 }
 }

@@ -41,7 +41,7 @@ public function store()
     $teacher = Teacher::create($validatedData);
     return redirect()->route('admin.teachers.index')->with([
             'type' => 'success',
-            'message' => 'Teacher added'
+            'message' => 'تمت الاضافة بنجاح'
         ]);
 
 }
@@ -73,7 +73,7 @@ public function update(Teacher $teacher)
 
     return redirect()->route('admin.teachers.index')->with([
         'type' => 'success',
-        'message' => 'Teacher Updated'
+        'message' => 'تم التعديل بنجاج'
     ]);
 }
 
@@ -88,7 +88,7 @@ public function destroy(Teacher $teacher)
     $teacher->delete();
     return redirect()->route('admin.teachers.index')->with([
         'type' => 'success',
-        'message' => 'Teacher deleted successfully'
+        'message' => 'تم الحذف بنجاح'
     ]);
 }
 }

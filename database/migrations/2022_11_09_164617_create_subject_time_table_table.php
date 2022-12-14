@@ -17,7 +17,7 @@ class CreateSubjectTimeTableTable extends Migration
             $table->foreignId('time_table_id');
             $table->foreignId('subject_id');
             $table->enum('day', ['الأحد','الأثنين','الثلاثاء','الإربعاء','الخميس']);
-            $table->enum('period', ['الاولى','الثانية','الثالثة','الرابعة','الخامسة','السادسة','السابعة']);
+            $table->enum('period', ['الاولى','الثانية','الثالثة','الرابعة','الخامسة','السادسة']);
         });
     }
 

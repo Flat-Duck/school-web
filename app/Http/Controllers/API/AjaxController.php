@@ -15,9 +15,18 @@ class AjaxController extends ApiController
     {
         $grade_id = $request->grade_id;
         $grade = Grade::find($grade_id);
-        
+
         $data['rooms'] = $grade->rooms;
         $data['subjects'] = $grade->subjects;
+
+        return $this->sendResponse("Data Loaded", $data);    
+    }
+    public function students(Request $request)
+    {
+        $grade_id = $request->grade_id;
+        $grade = Grade::findOrFail($grade_id);
+        
+        $data['students'] = $grade->students;
 
         return $this->sendResponse("Data Loaded", $data);    
     }
@@ -54,12 +63,11 @@ class AjaxController extends ApiController
         return $this->sendResponse("Data Loaded", $shots);
     }
 
-    public function centers()
-    {
-        $centers = Center::all();
-
-        return $this->sendResponse("Data Loaded", $centers);
-    }
+    // public function centers()
+    // {
+    //     $centers = Center::all();
+    //     return $this->sendResponse("Data Loaded", $centers);
+    // }
     public function profile()
     {
         $user = request()->user();
@@ -67,15 +75,7 @@ class AjaxController extends ApiController
         return $this->sendResponse("Profile Loaded", $user);
     }
 
-    public function main()
-    {
-        $data['all']  = Patient::all()->count();
-        $data['well'] = Patient::where('status', 'متعافي')->get()->count();
-        $data['dead'] = Patient::where('status', 'متوفي')->get()->count();
-        $data['infected'] = Patient::where('status', 'مصاب')->get()->count();
-        
-        return $this->sendResponse("Status Loaded", [$data]);
-    }
+    
     public function updatePassword()
     {
         $user = request()->user();

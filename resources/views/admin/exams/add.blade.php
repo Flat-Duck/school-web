@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
     <div class="col-xs-12">
-        <div class="box box-success">
+        <div class="box box-default ">
             <div class="box-header with-border">
                 <h3 class="box-title">إضافة موعد اختبار جديد</h3>
             </div>
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-success">حفظ</button>
+                    <button type="submit" class="btn bg-purple ">حفظ</button>
 
                     <a href="{{ route('admin.exams.index') }}" class="btn btn-default">
                         إلغاء

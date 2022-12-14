@@ -17,12 +17,14 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('name');
             $table->date('birth_date');
+            $table->bigInteger('n_id')->unique();
             $table->enum('gender', ["ذكر","أنثى"]);
             $table->foreignId('room_id');
             $table->string('email', 400);
             $table->string('phone');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

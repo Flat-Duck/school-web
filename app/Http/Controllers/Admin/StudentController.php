@@ -57,7 +57,7 @@ class StudentController extends Controller
         //dd($user);
         return redirect()->route('admin.students.index')->with([
                 'type' => 'success',
-                'message' => 'Student added'
+                'message' => 'تمت الاضافة بنجاح'
             ]);
 
     }
@@ -92,7 +92,7 @@ class StudentController extends Controller
 
         return redirect()->route('admin.students.index')->with([
             'type' => 'success',
-            'message' => 'Student Updated'
+            'message' => 'تم التعديل بنجاج'
         ]);
     }
 
@@ -107,7 +107,7 @@ class StudentController extends Controller
         $student->delete();
         return redirect()->route('admin.students.index')->with([
             'type' => 'success',
-            'message' => 'Student deleted successfully'
+            'message' => 'تم الحذف بنجاح'
         ]);
     }
 }

@@ -5,11 +5,11 @@
 @section('content')
 <div class="row">
     <div class="col-xs-12">
-        <div class="box box-success">
+        <div class="box box-default ">
             <div class="box-header with-border">
                 <h3 class="box-title">جدول دراسي</h3>
 
-                <a class="pull-right btn btn-sm btn-success" href="{{ route('admin.time_tables.create') }}">
+                <a class="pull-right btn btn-sm bg-purple " href="{{ route('admin.time_tables.create') }}">
                     إضافة جدول دراسي جديد
                 </a>
             </div>

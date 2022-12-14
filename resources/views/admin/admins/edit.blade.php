@@ -54,7 +54,7 @@
     </div>
 
     <div class="box-footer">
-        <button type="submit" class="btn btn-primary">تعديل</button>
+        <button type="submit" class="btn bg-purple ">تعديل</button>
 
         <a href="{{ route('admin.admins.index') }}" class="btn btn-default">
             إلغاء

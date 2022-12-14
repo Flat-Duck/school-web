@@ -5,11 +5,11 @@
 @section('content')
 <div class="row">
     <div class="col-xs-12">
-        <div class="box box-success">
+        <div class="box box-default ">
             <div class="box-header with-border">
                 <h3 class="box-title">الفصول الدراسية</h3>
 
-                <a class="pull-right btn btn-sm btn-success" href="{{ route('admin.rooms.create') }}">
+                <a class="pull-right btn btn-sm bg-purple " href="{{ route('admin.rooms.create') }}">
                     إضافة فصل جديد
                 </a>
             </div>
@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th> الفصل</th>
+                        <th>الفصل</th>
                         <th>اسم الصف</th>
                         <th>العمليات</th>
                     </tr>

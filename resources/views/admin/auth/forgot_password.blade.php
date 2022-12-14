@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-success btn-block btn-flat">Send Password Reset Link</button>
+            <button type="submit" class="btn bg-purple  btn-block btn-flat">Send Password Reset Link</button>
         </div>
     </form>
 

@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
     <div class="col-xs-12">
-        <div class="box box-success">
+        <div class="box box-default ">
             <div class="box-header with-border">
                 <h3 class="box-title">تعديل طالب</h3>
             </div>
@@ -25,6 +25,17 @@
                             value="{{ old('name', $student->name) }}"
                             id="name"
                         >
+                    </div>
+                        <div class="form-group">
+                            <label for="n_id">الرقم الوطني</label>
+                            <input type="text"
+                                class="form-control"
+                                name="n_id"
+                                required
+                                placeholder="الرقم الوطني"
+                                value="{{ old('n_id', $student->n_id) }}"
+                                id="n_id"
+                            >
                     </div>
                     <div class="form-group">
                         <label for="grade">الصف</label>
@@ -89,7 +100,7 @@
                     </div>                 
                 </div>
                 <div class="box-footer">
-                    <button type="submit" class="btn btn-success">تعديل</button>
+                    <button type="submit" class="btn bg-purple ">تعديل</button>
 
                     <a href="{{ route('admin.students.index') }}" class="btn btn-default">
                         إالغاء

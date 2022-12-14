@@ -17,11 +17,13 @@ class CreateTeachersTable extends Migration
             $table->id();
             $table->string('name');
             $table->enum('gender', ["ذكر","أنثى"]);
+            $table->bigInteger('n_id')->unique();
             $table->string('department');
             $table->string('email', 400);
             $table->string('phone');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

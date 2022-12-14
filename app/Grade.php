@@ -25,6 +25,17 @@ class Grade extends Model
         'id' => 'integer',
     ];
     
+    const names = [
+        1 => 'أول',
+        2 => 'ثاني',
+        3 => 'ثالث',
+        4 => 'رابع',
+        5 => 'خامس',
+        6 => 'سادس',        
+    ];
+    public static function names(){
+        return self::names;
+    }
     /**
      * Profile update validation rules
      *
@@ -33,7 +44,7 @@ class Grade extends Model
     public static function ValidationRules($id = null)
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:grades,name,'.$id,            
         ];
     }
     /**

@@ -6,6 +6,7 @@ use App\Grade;
 use App\Room;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RoomController extends Controller
 {
@@ -39,11 +40,15 @@ public function create()
  */
 public function store()
 {
-    $validatedData = request()->validate(Room::validationRules());
-    $room = Room::create($validatedData);
+    $validatedData = request()->validate([
+        'name' =>  ['required', Rule::unique('rooms')->where('grade_id', request()->grade_id) ],
+        'grade_id' => 'required|numeric',
+    ]); 
+    
+    $room = Room::create($validatedData);    
     return redirect()->route('admin.rooms.index')->with([
             'type' => 'success',
-            'message' => 'Room added'
+            'message' => 'تمت الاضافة بنجاح'
         ]);
 
 }
@@ -76,7 +81,7 @@ public function update(Room $room)
 
     return redirect()->route('admin.rooms.index')->with([
         'type' => 'success',
-        'message' => 'Room Updated'
+        'message' => 'تم التعديل بنجاج'
     ]);
 }
 
@@ -91,7 +96,7 @@ public function destroy(Room $room)
     $room->delete();
     return redirect()->route('admin.rooms.index')->with([
         'type' => 'success',
-        'message' => 'Room deleted successfully'
+        'message' => 'تم الحذف بنجاح'
     ]);
 }
 }

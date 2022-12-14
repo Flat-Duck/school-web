@@ -33,8 +33,7 @@ class TimeTable extends Model
             'الثالثة',
             'الرابعة',
             'الخامسة',
-            'السادسة',
-            'السابعة'
+            'السادسة'
         ];
     }
 
@@ -46,7 +45,7 @@ class TimeTable extends Model
     public static function ValidationRules($id = null)
     {
         return [
-            'room_id' => 'required'
+            'room_id' => 'required|unique:time_tables,room_id'
         ];
     }
     /**

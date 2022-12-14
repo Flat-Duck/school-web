@@ -41,7 +41,7 @@
                 <div class="input-group">
                     <input type="text" name="message" placeholder="أكتب رسالة" class="form-control">
                     <span class="input-group-btn">
-                        <button type="submit" class="btn btn-primary btn-flat">إرسال</button>
+                        <button type="submit" class="btn bg-purple  btn-flat">إرسال</button>
                     </span>
                 </div>
             </form>

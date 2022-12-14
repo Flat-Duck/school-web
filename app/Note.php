@@ -16,6 +16,10 @@ class Note extends Model
     ];
 
 
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 
     /**
      * Profile update validation rules

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Validation\Rule;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model

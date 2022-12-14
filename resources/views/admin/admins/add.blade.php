@@ -62,7 +62,7 @@
     </div>
 
     <div class="box-footer">
-        <button type="submit" class="btn btn-primary">حفظ</button>
+        <button type="submit" class="btn bg-purple ">حفظ</button>
 
         <a href="{{ route('admin.admins.index') }}" class="btn btn-default">
             إلغاء

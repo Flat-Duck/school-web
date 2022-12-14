@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Student;
 use Illuminate\Http\Request;
 
-class NoteController extends Controller
+class PromoteController extends Controller
 {
     /**
  * Display a list of Services.
@@ -26,10 +26,50 @@ public function index()
  *
  * @return \Illuminate\Http\Response
  */
-public function create()
+public function promote()
 {
     $students = Student::all();
-    return view('admin.notes.add',compact('students'));
+    $errors = [];
+    $errors['has_missing_subjects'] = [];
+    $errors['has_missing_periods'] = [];
+    $errors['failed_in_subjects'] = [];
+    foreach($students as $k =>$student){
+        $totSubjects = $student->marks->groupby('subject_id');        
+        if($totSubjects->count() < $student->grade->subjects->count()){
+            array_push($errors['has_missing_subjects'],$student);
+        }else{            
+            foreach($totSubjects as $k => $subject){                
+                $num = $subject->sum('value');
+             //   dd($subject[0]->subject_id);
+                if($subject->count() < 2){
+                    array_push($errors['has_missing_periods'],$student);                    
+                }else{
+                    $marks[$subject[0]->subject_id] = $num;
+                }                            
+            }
+            foreach($marks as $k => $mark){
+
+                if($mark < 50 ){
+                    array_push($errors['failed_in_subjects'],$student);                    
+                }                
+            }
+            
+        }
+        
+        if(!in_array($student, $errors['has_missing_subjects'])) {
+            if(!in_array($student, $errors['has_missing_periods'])) {
+                if(!in_array($student, $errors['failed_in_subjects'])) {
+                    $this->promoteStudent($student);                    
+                }
+            }           
+        }
+    }    
+    return view('admin.promote.index',compact('errors'));
+}
+
+public function promoteStudent(Student $student){
+    $student->room_id = 2;
+    $student->save();
 }
 
 /**

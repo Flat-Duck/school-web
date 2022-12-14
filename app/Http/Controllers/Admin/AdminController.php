@@ -45,7 +45,7 @@ class AdminController extends Controller
 
         $admin->update($validatedData);
 
-        return back()->with(['type' => 'success', 'message' => 'Profile updated successfully']);
+        return back()->with(['type' => 'success', 'message' => 'تم تعديل الملف الشخصي بنجاح']);
     }
 
     /**
@@ -63,7 +63,7 @@ class AdminController extends Controller
             $admin->password = bcrypt(request('password'));
             $admin->save();
 
-            return back()->with(['type' => 'success', 'message' => 'Password updated successfully']);
+            return back()->with(['type' => 'success', 'message' => 'تم تعديل كلمة المرور بنجاح']);
         }
 
         return back()->with(['type' => 'error', 'message' => 'Incorrect current password']);
