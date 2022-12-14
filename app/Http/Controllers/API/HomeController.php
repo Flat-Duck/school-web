@@ -40,6 +40,25 @@ class HomeController extends ApiController
         return $this->sendResponse("Exams Loaded", $exams);
     }
 
+    public function marks(Student $student)
+    {
+        $marks = $student->marks->groupby('subject_id');
+        $mix = [];
+        $marks = $marks->each(function ($item, $key) use($mix) {
+            $mark = new MarkRep($item[0]->name,0,0);
+            $mark['vals']=[];
+            $per = $item->each(function ($item, $key) use($mark) {                
+                return $mark[$key] = $item->value;
+            });
+
+            //dd($mark);
+          array_push($mix,$per);
+          dd($mix);
+        });
+
+        return $this->sendResponse("marks Loaded", $mix);
+    }
+
     public function time_tables(Student $student)
     {
         $time_tables = $student->timeTable;
@@ -111,4 +130,28 @@ class HomeController extends ApiController
 
         
     }
+
+
+}
+class MarkRep {
+
+    public $name;
+    public $val_one;
+    public $val_two;
+  
+    function __construct($name,$val_one,$val_two = 0) {
+      $this->name = $name;
+      $this->val_one = $val_one;
+      $this->val_two = $val_two;
+    }
+    public $vals = [];
+    function js() {
+        return [
+            "subject"=>$this->name,
+            "val_one"=>$this->val_one,
+            "val_two"=>$this->val_two,
+        ];
+
+    }
+        
 }

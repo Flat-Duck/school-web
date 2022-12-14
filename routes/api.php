@@ -34,6 +34,7 @@ Route::name("api.")->namespace('API')->group(function () {
         Route::get('{student}/attendances','HomeController@attendances');
         Route::get('{student}/subjects','HomeController@subjects'); 
         Route::get('{student}/exams','HomeController@exams');
+        Route::get('{student}/marks','HomeController@marks');
         Route::get('{student}/time_tables','HomeController@time_tables');
         Route::get('{student}','HomeController@student');
         Route::get('/password', 'HomeController@updatePassword');

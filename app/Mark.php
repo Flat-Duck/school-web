@@ -16,6 +16,15 @@ class Mark extends Model
         'student_id', 'period', 'value','subject_id'
     ];
 
+            /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'name'
+    ];
+
 
     public static function periods(){
         return [
@@ -30,5 +39,9 @@ class Mark extends Model
     public function subject()
     {
         return $this->belongsTo(Subject::class);//->with(['value','period']);
+    }
+    public function getNameAttribute($key)
+    {
+        return $this->subject->name;
     }
 }
