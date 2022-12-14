@@ -40,7 +40,6 @@ public function promote()
         }else{            
             foreach($totSubjects as $k => $subject){                
                 $num = $subject->sum('value');
-             //   dd($subject[0]->subject_id);
                 if($subject->count() < 2){
                     array_push($errors['has_missing_periods'],$student);                    
                 }else{
@@ -48,12 +47,10 @@ public function promote()
                 }                            
             }
             foreach($marks as $k => $mark){
-
                 if($mark < 50 ){
                     array_push($errors['failed_in_subjects'],$student);                    
                 }                
             }
-            
         }
         
         if(!in_array($student, $errors['has_missing_subjects'])) {
@@ -68,7 +65,7 @@ public function promote()
 }
 
 public function promoteStudent(Student $student){
-    $student->room_id = 2;
+    $student->room_id += 10;
     $student->save();
 }
 
