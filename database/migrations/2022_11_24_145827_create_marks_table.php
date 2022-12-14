@@ -18,7 +18,7 @@ class CreateMarksTable extends Migration
             $table->foreignId('student_id');
             $table->foreignId('subject_id');
             $table->double('value')->nullable()->default(null);
-            $table->enum('period', ['الفترة الاولى','الفترة الثانية','الفترة الثالثة']);
+            $table->enum('period', ['الفترة الاولى','الفترة الثانية']);
             $table->timestamps();
         });
     }
