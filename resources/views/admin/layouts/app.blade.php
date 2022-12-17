@@ -118,7 +118,7 @@
                             <span>إدارة الطلبة</span>
                         </a>
                     </li>
-                    <li class="treeview {{(($page == 'rooms') || ($page =='grades') || ($page =='subjects') || ($page =='time_tables')|| ($page =='attendances')|| ($page =='marks')|| ($page =='exams')) ? 'menu-open' : '' }}" style="height: auto;">
+                    <li class="treeview {{(($page == 'rooms') || ($page =='grades') || ($page =='subjects') || ($page =='time_tables')|| ($page =='attendances')|| ($page =='marks')|| ($page =='promote')|| ($page =='exams')) ? 'menu-open' : '' }}" style="height: auto;">
                         <a href="#">
                             <i class="fa  fa-cogs"></i> 
                             <span>إدارة شؤون الطلبة </span>
@@ -126,7 +126,7 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
-                        <ul class="treeview-menu" style="display: {{(($page == 'rooms') || ($page =='grades') || ($page =='subjects') || ($page =='time_tables')|| ($page =='attendances')|| ($page =='marks')|| ($page =='exams')) ? 'block' : 'none' }}">
+                        <ul class="treeview-menu" style="display: {{(($page == 'rooms') || ($page =='grades') || ($page =='subjects') || ($page =='time_tables')|| ($page =='attendances')|| ($page =='marks')|| ($page =='promote')|| ($page =='exams')) ? 'block' : 'none' }}">
                             <li {{ $page == 'grades' ? ' class=active' : '' }}>
                                 <a href="{{ route('admin.grades.index') }}">
                                     <i class="fa fa-building"></i>
@@ -167,6 +167,12 @@
                                 <a href="{{ route('admin.marks.index') }}">
                                     <i class="fa fa-building"></i>
                                     <span>درجات الطلبة </span>
+                                </a>
+                            </li>
+                            <li {{ $page == 'promote' ? ' class=active' : '' }}>
+                                <a href="{{ route('admin.promote.index') }}">
+                                    <i class="fa fa-building"></i>
+                                    <span>ترقية الطلبة </span>
                                 </a>
                             </li>
                         </ul>

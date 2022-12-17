@@ -43,19 +43,12 @@ class HomeController extends ApiController
     public function marks(Student $student)
     {
         $marks = $student->marks->groupby('subject_id');
-        $mix = [];
-        $marks = $marks->each(function ($item, $key) use($mix) {
-            $mark = new MarkRep($item[0]->name,0,0);
-            $mark['vals']=[];
-            $per = $item->each(function ($item, $key) use($mark) {                
-                return $mark[$key] = $item->value;
-            });
-
-            //dd($mark);
-          array_push($mix,$per);
-          dd($mix);
-        });
-
+        $mix = [];        
+        foreach($marks as $mark){
+            $mark = new MarkRep($mark[0]->name,$mark[0]->value,$mark[1]->value?? 0);
+            array_push($mix,$mark);
+        }
+        
         return $this->sendResponse("marks Loaded", $mix);
     }
 
@@ -144,7 +137,7 @@ class MarkRep {
       $this->val_one = $val_one;
       $this->val_two = $val_two;
     }
-    public $vals = [];
+
     function js() {
         return [
             "subject"=>$this->name,

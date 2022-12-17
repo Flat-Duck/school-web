@@ -16,9 +16,44 @@ class PromoteController extends Controller
  */
 public function index()
 {
-    $notes = Note::getList();
-
-    return view('admin.notes.index', compact('notes'));
+    $students = Student::all();
+    $error = [];
+    $error['has_missing_subjects'] = [];
+    $error['has_missing_periods'] = [];
+    $error['failed_in_subjects'] = [];
+    foreach($students as $k =>$student){
+        $totSubjects = $student->marks->groupby('subject_id');        
+        if($totSubjects->count() < $student->grade->subjects->count()){
+            array_push($error['has_missing_subjects'],$student);
+        }else{            
+            foreach($totSubjects as $k => $subject){                
+                $num = $subject->sum('value');
+                if($subject->count() < 2){
+                    array_push($error['has_missing_periods'],$student);                    
+                }else{
+                    $marks[$subject[0]->subject_id] = $num;
+                }                            
+            }
+            foreach($marks as $k => $mark){
+                if($mark < 50 ){
+                    array_push($error['failed_in_subjects'],$student);                    
+                }                
+            }
+        }
+        
+        if(!in_array($student, $error['has_missing_subjects'])) {
+            if(!in_array($student, $error['has_missing_periods'])) {
+                if(!in_array($student, $error['failed_in_subjects'])) {
+                    $this->promoteStudent($student);                    
+                }
+            }           
+        }
+    }  
+    
+    $error['has_missing_subjects'] = array_unique($error['has_missing_subjects']);
+    $error['has_missing_periods'] = array_unique($error['has_missing_periods']);
+    $error['failed_in_subjects'] = array_unique($error['failed_in_subjects']);
+    
 }
 
 /**
@@ -29,44 +64,45 @@ public function index()
 public function promote()
 {
     $students = Student::all();
-    $errors = [];
-    $errors['has_missing_subjects'] = [];
-    $errors['has_missing_periods'] = [];
-    $errors['failed_in_subjects'] = [];
+    $error = [];
+    $error['has_missing_subjects'] = [];
+    $error['has_missing_periods'] = [];
+    $error['failed_in_subjects'] = [];
     foreach($students as $k =>$student){
         $totSubjects = $student->marks->groupby('subject_id');        
         if($totSubjects->count() < $student->grade->subjects->count()){
-            array_push($errors['has_missing_subjects'],$student);
+            array_push($error['has_missing_subjects'],$student);
         }else{            
             foreach($totSubjects as $k => $subject){                
                 $num = $subject->sum('value');
                 if($subject->count() < 2){
-                    array_push($errors['has_missing_periods'],$student);                    
+                    array_push($error['has_missing_periods'],$student);                    
                 }else{
                     $marks[$subject[0]->subject_id] = $num;
                 }                            
             }
             foreach($marks as $k => $mark){
                 if($mark < 50 ){
-                    array_push($errors['failed_in_subjects'],$student);                    
+                    array_push($error['failed_in_subjects'],$student);                    
                 }                
             }
-        }
-        
-        if(!in_array($student, $errors['has_missing_subjects'])) {
-            if(!in_array($student, $errors['has_missing_periods'])) {
-                if(!in_array($student, $errors['failed_in_subjects'])) {
-                    $this->promoteStudent($student);                    
-                }
-            }           
-        }
-    }    
-    return view('admin.promote.index',compact('errors'));
+        }           
+    }  
+    
+    $error['has_missing_subjects'] = array_unique($error['has_missing_subjects']);
+    $error['has_missing_periods'] = array_unique($error['has_missing_periods']);
+    $error['failed_in_subjects'] = array_unique($error['failed_in_subjects']);
+    
+    return view('admin.promote.index',compact('error'));
 }
 
 public function promoteStudent(Student $student){
-    $student->room_id += 10;
-    $student->save();
+    if($student->grade->id == 6){
+        $student->delete();
+    }else{
+        $student->room_id += 10;
+        $student->save();
+    }
 }
 
 /**

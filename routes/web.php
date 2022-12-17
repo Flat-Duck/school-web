@@ -37,7 +37,7 @@ Route::name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
         Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
 
         
-        Route::get('/promote', 'PromoteController@promote')->name('promote');
+        Route::get('/promote', 'PromoteController@promote')->name('promote.index');
         Route::get('/chats', 'ChatController@index')->name('chats.index');
         Route::get('/chats/{user}', 'ChatController@show')->name('chats.show');
         Route::post('/chats/{user}', 'ChatController@send')->name('chats');

@@ -1,6 +1,6 @@
-@extends('admin.layouts.app', ['page' => 'marks'])
+@extends('admin.layouts.app', ['page' => 'promote'])
 
-@section('title', 'درجات الطلبة')
+@section('title', 'ترقية الطلبة')
 @section('styles')
 {{-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"> --}}
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
@@ -13,9 +13,22 @@
     <div class="col-xs-12">
         <div class="box box-default ">
             <div class="box-header with-border">
-                <h3 class="box-title">طلبة لم ترصد لهم بعض درجات الفترات</h3>
+                <h3 class="box-title">ترقية الطلبة</h3>
+            </div>            
+            <div class="box-body">
+    
             </div>
-            
+    
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-default ">
+            <div class="box-header with-border">
+                <h3 class="box-title">طلبة لم ترصد لهم بعض درجات الفترات</h3>
+            </div>            
             <div class="box-body">
                 <table class="table table-responsive table-hover table-bordered">
                     <thead>
@@ -26,7 +39,7 @@
                             <th>العمليات</th>
                         </tr>
                     </thead>                    
-                    @foreach ($errors['has_missing_periods'] as $k=> $student)                    
+                    @foreach ($error['has_missing_periods'] as $k=> $student)                    
                         <tbody>
 
                             <tr class="clickable" data-toggle="collapse" data-target="#group-of-rows-{{$student->id}}" aria-expanded="false" aria-controls="group-of-rows-{{$student->id}}">
@@ -50,7 +63,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                        @endif
+                        {{-- @endif --}}
                     @endforeach
                 </table>
             </div>
@@ -58,7 +71,110 @@
                 {{-- {{ $marks->links('vendor.pagination.default') }} --}}
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
         <div class="box box-default ">
+            <div class="box-header with-border">
+                <h3 class="box-title">طلبة لم ترصد لهم بعض درجات الفترات</h3>
+            </div>            
+            <div class="box-body">
+                <table class="table table-responsive table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>الاسم</th>
+                            <th>الصف /الفصل</th>
+                            <th>العمليات</th>
+                        </tr>
+                    </thead>                    
+                    @foreach ($error['has_missing_subjects'] as $k=> $student)                    
+                        <tbody>
+
+                            <tr class="clickable" data-toggle="collapse" data-target="#group-of-rows-{{$student->id}}" aria-expanded="false" aria-controls="group-of-rows-{{$student->id}}">
+                                <td><i class="fa fa-plus" aria-hidden="true"></i></td>
+                                <td>{{ $student->name }}</td>
+                                <td>{{ $student->grade->name.' / '.$student->room->name}}</td>
+                                <td>
+                                    <a href="{{ route('admin.marks.create', ['student_id' => $student->id]) }}">
+                                        <span class="btn btn-warning">   <i class="fa fa-pencil-square-o"></i></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody id="group-of-rows-{{$student->id}}" class="collapse">
+                            @foreach ($student->marksGruoped() as $k=> $marks)
+                                <tr>
+                                    <td>{{ $marks[0]->subject->name }}</td>
+                                    @foreach ($marks as $k=> $mark)
+                                    <td>{{ $mark->value }}</td>
+                                    @endforeach                                    
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        {{-- @endif --}}
+                    @endforeach
+                </table>
+            </div>
+            <div class="box-footer clearfix">
+                {{-- {{ $marks->links('vendor.pagination.default') }} --}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-default ">
+            <div class="box-header with-border">
+                <h3 class="box-title">طلبة راسبون في بعض المواد</h3>
+            </div>            
+            <div class="box-body">
+                <table class="table table-responsive table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>الاسم</th>
+                            <th>الصف /الفصل</th>
+                            <th>العمليات</th>
+                        </tr>
+                    </thead>                    
+                    @foreach ($error['failed_in_subjects'] as $k=> $student)                    
+                        <tbody>
+
+                            <tr class="clickable" data-toggle="collapse" data-target="#group-of-rows-{{$student->id}}" aria-expanded="false" aria-controls="group-of-rows-{{$student->id}}">
+                                <td><i class="fa fa-plus" aria-hidden="true"></i></td>
+                                <td>{{ $student->name }}</td>
+                                <td>{{ $student->grade->name.' / '.$student->room->name}}</td>
+                                <td>
+                                    <a href="{{ route('admin.marks.create', ['student_id' => $student->id]) }}">
+                                        <span class="btn btn-warning">   <i class="fa fa-pencil-square-o"></i></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody id="group-of-rows-{{$student->id}}" class="collapse">
+                            @foreach ($student->marksGruoped() as $k=> $marks)
+                                <tr>
+                                    <td>{{ $marks[0]->subject->name }}</td>
+                                    @foreach ($marks as $k=> $mark)
+                                    <td>{{ $mark->value }}</td>
+                                    @endforeach                                    
+                                </tr>
+                            @endforeach
+                        </tbody>
+                        {{-- @endif --}}
+                    @endforeach
+                </table>
+            </div>
+            <div class="box-footer clearfix">
+                {{-- {{ $marks->links('vendor.pagination.default') }} --}}
+            </div>
+        </div>
+    </div>
+</div>
+
+        {{-- <div class="box box-default ">
             <div class="box-header with-border">
                 <h3 class="box-title">درجات الطلبة من صف رابع الى صف سادس</h3>
             </div>
@@ -103,9 +219,9 @@
                 </table>
             </div>
             <div class="box-footer clearfix">
-                {{-- {{ $marks->links('vendor.pagination.default') }} --}}
+                 {{ $marks->links('vendor.pagination.default') }} 
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection
