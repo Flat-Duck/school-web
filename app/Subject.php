@@ -41,7 +41,7 @@ protected $searchableFields = ['*'];
     {
         return static::search($search)
             ->latest()
-            ->paginate(10)
+            ->paginate(100)
             ->withQueryString();
         
     }
