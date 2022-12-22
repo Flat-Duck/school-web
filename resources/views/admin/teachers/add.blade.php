@@ -30,6 +30,8 @@
                         <input type="text"
                             class="form-control"
                             name="n_id"
+                            minlength="12"
+                            maxlength="12"
                             required
                             placeholder="الرقم الوطني"
                             value="{{ old('n_id') }}"
@@ -72,6 +74,8 @@
                         <input type="text"
                             class="form-control"
                             name="phone"
+                            minlength="7"
+                            maxlength="10"
                             required
                             placeholder="رقم الهاتف"
                             value="{{ old('phone') }}"

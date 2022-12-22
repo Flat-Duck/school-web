@@ -73,6 +73,8 @@
                     <input type="text"
                         class="form-control"
                         name="phone"
+                        minlength="7"
+                        maxlength="10"
                         required
                         placeholder="رقم الهاتف"
                         value="{{ old('phone', $teacher->phone) }}"

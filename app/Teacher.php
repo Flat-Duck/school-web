@@ -42,8 +42,8 @@ protected $searchableFields = ['*'];
             'gender'=> 'required|string',
             'department'=> 'required|string',
             'email'=> 'required|string',
-            'phone'=> 'required|min:7|max:10|numeric',
-            'n_id'=>'required|min:12|max:12|numeric|unique:teachers,n_id,'.$id,
+            'phone'=> 'required|numeric',
+            'n_id'=>'required|numeric|unique:teachers,n_id,'.$id,
 
             // 'is_active' => 'boolean',
         ];
