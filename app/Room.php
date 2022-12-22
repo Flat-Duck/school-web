@@ -5,9 +5,15 @@ namespace App;
 use Illuminate\Validation\Rule;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Scopes\Searchable;
 class Room extends Model
 {
+    use Searchable;
+
+    /**
+ * @var array Sets the fields that would be searched
+ */
+protected $searchableFields = ['*'];
         /**
      * The attributes that are mass assignable.
      *
@@ -69,8 +75,12 @@ class Room extends Model
      *
      * @return \Illuminate\Pagination\Paginator
      **/
-    public static function getList()
+    public static function getList($search = null)
     {
-        return static::paginate(10);
+        return static::search($search)
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+        
     }
 }

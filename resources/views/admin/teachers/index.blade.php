@@ -18,7 +18,8 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>الاسم</th>                    
+                        <th>الاسم</th>                
+                        <th>التخصص</th>                
                         <th>الجنس</th>                    
                         <th>رقم الهاتف</th>                    
                         <th>العمليات</th>
@@ -29,6 +30,7 @@
                         <tr>
                             <td>{{ $k+1}}</td>
                             <td>{{ $teacher->name }}</td>
+                            <td>{{ $teacher->department }}</td>
                             <td>{{ $teacher->gender }}</td>
                             <td>{{ $teacher->phone }}</td>
                             <td>

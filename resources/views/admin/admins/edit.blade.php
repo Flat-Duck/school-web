@@ -49,7 +49,18 @@
                 value="{{ old('email', $admin->email) }}"
                 id="email"
             >
-        </div>    
+        </div>   
+        <div class="form-group">
+            <label for="phone">رقم الهاتف</label>
+            <input type="text"
+                class="form-control"
+                name="phone"
+                required
+                placeholder="رقم الهاتف"
+                value="{{ old('phone', $teacher->phone) }}"
+                id="phone"
+            >
+        </div>           
     <input type="hidden" name="password" value="{{old('password', $admin->password)}}">
     </div>
 

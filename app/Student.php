@@ -4,9 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Scopes\Searchable;
 class Student extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Searchable;
+
+    /**
+ * @var array Sets the fields that would be searched
+ */
+protected $searchableFields = ['*'];
     /**
      * The attributes that are mass assignable.
      *
@@ -51,13 +57,13 @@ class Student extends Model
     public static function ValidationRules($id = null)
     {
         return [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|regex:/^[\pL\s\-]+$/u',
             'birth_date' => 'required|date',
             'gender' => 'required',
-            'phone' => 'required',
+            'phone'=> 'required|min:7|max:10|numeric',
             'room_id' => 'required',
             'email' => 'required|email',
-            'n_id'=>'required|numeric|unique:students,n_id',
+            'n_id'=>'required|min:12|max:12|numeric|unique:students,n_id,'.$id,
            // 'is_active'  => 'boolean',
         ];
     }
@@ -121,8 +127,12 @@ class Student extends Model
      *
      * @return \Illuminate\Pagination\Paginator
      **/
-    public static function getList()
+    public static function getList($search = null)
     {
-        return static::paginate(10);
+        return static::search($search)
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+        
     }
 }

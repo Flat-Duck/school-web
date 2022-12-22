@@ -6,11 +6,16 @@ use App\Notifications\AdminResetPassword;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Scopes\Searchable;
 
 class Admin extends Authenticatable
 {
-    use SoftDeletes, Notifiable;
+    use SoftDeletes, Notifiable, Searchable;
+
+    /**
+ * @var array Sets the fields that would be searched
+ */
+protected $searchableFields = ['*'];
 
     /**
      * The attributes that should be mutated to dates.
@@ -25,7 +30,7 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'username', 'password',
+        'name', 'email', 'username', 'password','phone'
     ];
 
     /**
@@ -56,7 +61,8 @@ class Admin extends Authenticatable
     public static function validationRules($id = null)
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|max:255|regex:/^[\pL\s\-]+$/u',
+            'phone' => 'required|string|unique:admins,phone,'.$id,
             'username' => 'required|string|unique:admins,username,'.$id,
             'email' => 'required|email|unique:admins,email,'.$id,
             'password' => 'string|nullable',
@@ -99,8 +105,12 @@ class Admin extends Authenticatable
      *
      * @return \Illuminate\Pagination\Paginator
      **/
-    public static function getList()
+    public static function getList($search = null)
     {
-        return static::paginate(10);
+        return static::search($search)
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+        
     }
 }

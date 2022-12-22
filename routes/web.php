@@ -38,6 +38,7 @@ Route::name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
 
         
         Route::get('/promote', 'PromoteController@promote')->name('promote.index');
+        Route::post('/promote', 'PromoteController@do_promote')->name('promote.promote');
         Route::get('/chats', 'ChatController@index')->name('chats.index');
         Route::get('/chats/{user}', 'ChatController@show')->name('chats.show');
         Route::post('/chats/{user}', 'ChatController@send')->name('chats');

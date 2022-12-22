@@ -16,7 +16,7 @@
                 <div class="box-body">
                     <div class="form-group">
                         <label for="student">الطالب</label>
-                        <select  id="student" name="student_id" class="form-control">
+                        <select  id="student" name="student_id" class="form-control select2">
                             @foreach($students as $k=> $student)
                                 <option value="{{$student->id }}" {{$student->id == old('student_id') ? ' selected="selected"' : '' }} >{{$student->name}}</option>
                             @endforeach

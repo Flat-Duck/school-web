@@ -16,7 +16,11 @@
                 <h3 class="box-title">ترقية الطلبة</h3>
             </div>            
             <div class="box-body">
-    
+                <form action="{{ route('admin.promote.promote') }}" method="POST" class="inline pointer">
+                    @csrf
+                    <input type="hidden" name="status" value="">
+                    <input type="submit" class="btn btn-danger" value="ترقية الطلاب">
+                </form>
             </div>
     
         </div>

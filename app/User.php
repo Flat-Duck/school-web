@@ -6,10 +6,16 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use App\Scopes\Searchable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable,Searchable;
+
+    /**
+ * @var array Sets the fields that would be searched
+ */
+protected $searchableFields = ['*'];
 
     /**
      * The attributes that are mass assignable.
@@ -52,8 +58,12 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Pagination\Paginator
      **/
-    public static function getList()
+    public static function getList($search = null)
     {
-        return static::paginate(10);
+        return static::search($search)
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+        
     }
 }

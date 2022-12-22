@@ -3,9 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Scopes\Searchable;
 class Mark extends Model
 {
+    use Searchable;
+
+    /**
+ * @var array Sets the fields that would be searched
+ */
+protected $searchableFields = ['*'];
 
         /**
      * The attributes that are mass assignable.

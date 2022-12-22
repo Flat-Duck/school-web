@@ -14,25 +14,25 @@
                 @csrf
 
                 <div class="box-body">   
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="grade">الصف</label>
                         <select  id="grade" name="grade_id" class="form-control">
                             @foreach($grades as $k=> $grade)
                                 <option value="{{$grade->id }}" {{$grade->id == old('grade_id') ? ' selected="selected"' : '' }} >{{$grade->name}}</option>
                             @endforeach
                         </select>
-                    </div>                
+                    </div>                 --}}
                     <div class="form-group">
                         <label for="student">الطالب</label>
-                        <select id="students" name="student_id" class="form-control">
-                            @foreach($students as $k=> $student)
-                                <option value="{{$student->id }}" {{$student->id == old('student',$student->id) ? 'selected' : '' }} >{{$student->name}}</option>
+                        <select disabled id="students" name="students" class="form-control">
+                            @foreach($students as $k=> $stud)
+                                <option value="{{$stud->id }}" {{$stud->id == old('students',$student->id) ? 'selected' : '' }} >{{$stud->name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <input type="hidden" name="student" value="{{$student->id}}">
                     <div class="form-group">
-                        <label for="period">الدرجة</label>
+                        <label for="period">الفترة</label>
                         <select id="period" name="period" class="form-control">
                             @foreach($periods as $k=> $period)
                                 <option value="{{$period }}" {{$period == old('period') ? ' selected="selected"' : '' }} >{{$period}}</option>

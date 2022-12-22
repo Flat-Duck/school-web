@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ config('app.name') }} - @yield('title')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
     <link href="{{ mix('/css/admin/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('/css/admin/app.css') }}" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet">
+
 
     {{-- You can put page wise internal css style in styles section --}}
     @yield('styles')
@@ -99,12 +101,16 @@
                         </a>
                     </li>
                     {{-- //////////////////////// --}}
+                    @if (Auth()->user()->id ==1)
+                        
+                    
                     <li {{ $page == 'admins' ? ' class=active' : '' }}>
                         <a href="{{ route('admin.admins.index') }}">
                             <i class="fa fa-building"></i>
-                            <span>إدارة المستخدمين</span>
+                            <span>إدارة الموظفين</span>
                         </a>
                     </li>
+                    @endif
                     <li {{ $page == 'teachers' ? ' class=active' : '' }}>
                         <a href="{{ route('admin.teachers.index') }}">
                             <i class="fa fa-building"></i>
@@ -169,12 +175,12 @@
                                     <span>درجات الطلبة </span>
                                 </a>
                             </li>
-                            <li {{ $page == 'promote' ? ' class=active' : '' }}>
+                            {{-- <li {{ $page == 'promote' ? ' class=active' : '' }}>
                                 <a href="{{ route('admin.promote.index') }}">
                                     <i class="fa fa-building"></i>
                                     <span>ترقية الطلبة </span>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                     <li {{ $page == 'notes' ? ' class=active' : '' }}>
@@ -226,6 +232,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     @if (session('message'))
         <script>
@@ -233,6 +240,9 @@
         </script>
     @endif
     <script type="text/javascript">
+    $(document).ready(function() {
+    $('.select2').select2();
+});
 $(document).ready( function () {
    $('#table').DataTable( {
         "language": {

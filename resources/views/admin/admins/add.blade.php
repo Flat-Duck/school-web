@@ -37,6 +37,17 @@
                 id="username"
             >
         </div>
+        <div class="form-group">
+            <label for="phone">رقم الهاتف</label>
+            <input type="text"
+                class="form-control"
+                name="phone"
+                required
+                placeholder="رقم الهاتف"
+                value="{{ old('phone') }}"
+                id="phone"
+            >
+        </div>              
       <div class="form-group">
             <label for="email">البريد الإلكتروني</label>
             <input type="email"
