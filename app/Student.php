@@ -116,13 +116,7 @@ protected $searchableFields = ['*'];
     public function getGradeNameAttribute(){
         return $this->room->grade->name;
     }
-
-    // public function IsBeginner(){
-    //     $grade = $this->room->grade->name;
-    //   return  in_array($grade, ['أول','ثاني','ثالت']);
-
-    // }
-
+    
     /**
      * Returns the paginated list of resources
      *
@@ -131,9 +125,18 @@ protected $searchableFields = ['*'];
     public static function getList($search = null)
     {
         return static::search($search)
-            ->latest()
-            ->paginate(10)
-            ->withQueryString();
+        ->latest()
+        ->paginate(10)
+        ->withQueryString();
         
+    }
+    public static function boot() {
+      parent::boot();
+    
+      static::deleting(function($student) { // before delete() method call this
+           $student->attendances()->delete();
+           $student->notes()->delete();
+           // do the rest of the cleanup...
+      });
     }
 }

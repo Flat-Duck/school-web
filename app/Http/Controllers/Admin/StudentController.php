@@ -104,6 +104,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
+       // $student->marks()->delete();
         $student->delete();
         return redirect()->route('admin.students.index')->with([
             'type' => 'success',
