@@ -63,7 +63,7 @@
             <label for="password">كلمة المرور</label>
             <input type="password"
                 class="form-control"
-                name="pass"
+                name="password"
                 required
                 placeholder="كلمة المرور"
                 value="{{ old('password') }}"

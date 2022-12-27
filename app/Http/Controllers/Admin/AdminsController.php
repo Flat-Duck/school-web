@@ -39,6 +39,7 @@ class AdminsController extends Controller
     public function store()
     {
         
+        
         $validatedData = request()->validate(Admin::validationRules(null));
         $admin = Admin::create($validatedData);
         $admin->password = bcrypt(request()->password);
