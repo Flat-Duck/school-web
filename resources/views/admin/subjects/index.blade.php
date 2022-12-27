@@ -30,7 +30,7 @@
                             
                             <td>
                                 <a href="{{ route('admin.subjects.edit', ['subject' => $subject->id]) }}">
-                                   <span class="btn bg-maroon">   <i class="fa fa-pencil-square-o"></i></span>
+                                   <span class="btn btn-warning">   <i class="fa fa-pencil-square-o"></i></span>
                                 </a>
 
                                 <form action="{{ route('admin.subjects.destroy', ['subject' => $subject->id]) }}"

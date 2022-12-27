@@ -51,7 +51,7 @@
                                 <tr>
                                     @php
                                         $total[0] += $marks[0]->value;
-                                        $total[1] += $marks[1]->value
+                                        $total[1] += $marks[1]->value?? 0 ;
                                     @endphp
                                     
                                     <td>{{ $marks[0]->subject->name }}</td>

@@ -55,6 +55,9 @@
             <input type="text"
                 class="form-control"
                 name="phone"
+                size="10"
+                maxlength="10"
+                minlength="10"
                 required
                 placeholder="رقم الهاتف"
                 value="{{ old('phone', $admin->phone) }}"

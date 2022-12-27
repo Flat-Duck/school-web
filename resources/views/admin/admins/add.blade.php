@@ -41,6 +41,9 @@
             <label for="phone">رقم الهاتف</label>
             <input type="text"
                 class="form-control"
+                size="10"
+                maxlength="10"
+                minlength="10"
                 name="phone"
                 required
                 placeholder="رقم الهاتف"

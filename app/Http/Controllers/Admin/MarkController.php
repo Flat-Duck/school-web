@@ -51,7 +51,8 @@ class MarkController extends Controller
     
      public function store_mark(Request $request)
     { $subs = [1,2,3,4,5,6,7,8,9,10,11];
-        $student = Student::findOrFail($request->student_id);
+       // dd(request()->all());
+        $student = Student::findOrFail($request->student);
         $data = $request->only($subs);
         
         foreach ($data as $key => $value) {
