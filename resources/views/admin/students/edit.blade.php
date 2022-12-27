@@ -28,12 +28,13 @@
                     </div>
                         <div class="form-group">
                             <label for="n_id">الرقم الوطني</label>
-                            <input type="text"
+                            <input type="number"
+                            minlength="12"
+                                maxlength="12"
                                 class="form-control"
                                 name="n_id"
                                 required
-                                minlength="12"
-                                maxlength="12"
+
                                 placeholder="الرقم الوطني"
                                 value="{{ old('n_id', $student->n_id) }}"
                                 id="n_id"
@@ -91,10 +92,10 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">رقم هاتف ولي الامر</label>
-                        <input type="text"
+                        <input type="number"
                             class="form-control"
                             name="phone"
-                            minlength="7"
+                            minlength="10"
                             maxlength="10"
                             required
                             placeholder="رقم هاتف ولي الامر"
