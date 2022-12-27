@@ -18,6 +18,7 @@ class CreateNotesTable extends Migration
             $table->string('content');
             $table->foreignId('student_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

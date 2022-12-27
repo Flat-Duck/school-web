@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Scopes\Searchable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Iatstuti\Database\Support\CascadeSoftDeletes;
 class Note extends Model
 {
-    use Searchable;
+    use SoftDeletes, Searchable,CascadeSoftDeletes;
 
     /**
  * @var array Sets the fields that would be searched
