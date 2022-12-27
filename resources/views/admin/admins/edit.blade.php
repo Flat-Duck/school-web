@@ -1,13 +1,13 @@
 @extends('admin.layouts.app', ['page' => 'admins'])
 
-@section('title', 'تعديل المستخدم')
+@section('title', 'تعديل الموظف')
 
 @section('content')
 <div class="row">
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">تعديل المستخدم</h3>
+                <h3 class="box-title">تعديل الموظف</h3>
             </div>
 
 <form role="form" method="POST" action="{{ route('admin.admins.update', ['admin' => $admin->id]) }}">
@@ -57,7 +57,7 @@
                 name="phone"
                 required
                 placeholder="رقم الهاتف"
-                value="{{ old('phone', $teacher->phone) }}"
+                value="{{ old('phone', $admin->phone) }}"
                 id="phone"
             >
         </div>           

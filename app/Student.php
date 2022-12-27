@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Iatstuti\Database\Support\CascadeSoftDeletes;
 use App\Scopes\Searchable;
 class Student extends Model
 {
-    use SoftDeletes, Searchable;
+    use SoftDeletes, Searchable,CascadeSoftDeletes;
 
     /**
  * @var array Sets the fields that would be searched

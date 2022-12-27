@@ -1,13 +1,13 @@
 @extends('admin.layouts.app', ['page' => 'admins'])
 
-@section('title', 'إدارة المستخدمين')
+@section('title', 'إدارة الموظفين')
 
 @section('content')
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">المستخدمين</h3>
+                <h3 class="box-title">الموظفين</h3>
 
     <a class="pull-right btn bg-purple "
         href="{{ route('admin.admins.create') }}"

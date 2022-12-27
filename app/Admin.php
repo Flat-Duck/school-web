@@ -2,15 +2,20 @@
 
 namespace App;
 
-use App\Notifications\AdminResetPassword;
+//use Dyrynda\Database\Support\CascadeSoftDeletes as SOD;
+use Iatstuti\Database\Support\CascadeSoftDeletes;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Notifications\AdminResetPassword;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Scopes\Searchable;
 
+
 class Admin extends Authenticatable
 {
-    use SoftDeletes, Notifiable, Searchable;
+    use SoftDeletes, Notifiable, Searchable, CascadeSoftDeletes;
 
     /**
  * @var array Sets the fields that would be searched

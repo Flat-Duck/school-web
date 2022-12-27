@@ -1,6 +1,6 @@
 @extends('admin.layouts.app', ['page' => 'admins'])
 
-@section('title', 'إضافة مستخدم جديد')
+@section('title', 'إضافة موظف جديد')
 
 @section('content')
 
@@ -8,7 +8,7 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">إضافة مستخدم جديد</h3>
+                <h3 class="box-title">إضافة موظف جديد</h3>
             </div>    
 <form role="form" method="POST" action="{{ route('admin.admins.store') }}">
     @csrf
