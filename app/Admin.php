@@ -67,7 +67,7 @@ protected $searchableFields = ['*'];
     {
         return [
             'name' => 'required|string|max:255|regex:/^[\pL\s\-]+$/u',
-            'phone' => 'required|string|unique:admins,phone,'.$id,
+            'phone' => 'required|numeric|unique:admins,phone,'.$id,
             'username' => 'required|string|unique:admins,username,'.$id,
             'email' => 'required|email|unique:admins,email,'.$id,
             'password' => 'string',
