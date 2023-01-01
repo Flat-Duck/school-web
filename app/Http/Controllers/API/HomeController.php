@@ -92,9 +92,9 @@ class HomeController extends ApiController
      */
     public function chats(Request $request)
     {
-        $allChats =  $request->user()->chats;
+        $chats =  $request->user()->chats;
 
-        foreach ($allChats as $k => $chat) {
+        foreach ($chats as $k => $chat) {
             if ($chat->sender_id != $request->user()->id) {
                 $chat['ismine'] = false;
             }else{

@@ -43,7 +43,6 @@ Route::name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
         Route::get('/chats/{user}', 'ChatController@show')->name('chats.show');
         Route::post('/chats/{user}', 'ChatController@send')->name('chats');
         
-        Route::resource('centers', 'CenterController');
         Route::resource('notes', 'NoteController');
         Route::resource('attendances', 'AttendanceController');
         Route::resource('teachers', 'TeacherController');
@@ -54,7 +53,6 @@ Route::name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
         Route::resource('exams', 'ExamController');
         Route::resource('admins', 'AdminsController');
         Route::resource('marks', 'MarkController');
-        // Route::get('marks/add_mark/{student}', 'MarkController@add_mark')->name('add_mark');
         Route::post('marks/add_mark/{student}', 'MarkController@store_mark')->name('save_mark');
       
         Route::get('time_tables/add_period/{time_table}', 'TimeTableController@add_period')->name('add_period');
@@ -63,13 +61,6 @@ Route::name('admin.')->prefix('admin')->namespace('Admin')->group(function () {
         
 
 
-        Route::resource('patients', 'PatientController');
-        Route::resource('employees', 'EmployeeController');
-        Route::resource('swipes', 'SwipeController');
-        Route::resource('shots', 'ShotController');
-
-
-        Route::get('/test','FirebaseController@index');
         // Profile
         Route::get('/profile', 'AdminController@profile')->name('profile');
         Route::post('/profile', 'AdminController@profileUpdate');
