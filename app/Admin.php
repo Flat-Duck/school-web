@@ -2,12 +2,9 @@
 
 namespace App;
 
-//use Dyrynda\Database\Support\CascadeSoftDeletes as SOD;
 use Iatstuti\Database\Support\CascadeSoftDeletes;
-
-use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Notifications\AdminResetPassword;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Scopes\Searchable;
@@ -58,7 +55,7 @@ protected $searchableFields = ['*'];
         $this->notify(new AdminResetPassword($token, $this->email, $this->name));
     }
 
-        /**
+    /**
      * Validation rules
      *
      * @return array
@@ -70,7 +67,7 @@ protected $searchableFields = ['*'];
             'phone' => 'required|numeric|unique:admins,phone,'.$id,
             'username' => 'required|string|unique:admins,username,'.$id,
             'email' => 'required|email|unique:admins,email,'.$id,
-            'password' => 'string',
+            'password' => 'string|min:6',
         ];
     }
     /**
@@ -95,8 +92,8 @@ protected $searchableFields = ['*'];
     public static function passwordValidationRules()
     {
         return [
-            'current_password' => 'required|string|min:8',
-            'password' => 'required|string|min:8|confirmed',
+            'current_password' => 'required|string|min:6',
+            'password' => 'required|string|min:6|confirmed',
         ];
     }
 

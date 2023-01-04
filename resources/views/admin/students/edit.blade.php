@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label for="n_id">الرقم الوطني</label>
                             <input type="text"
-                            minlength="12"
+                                minlength="12"
                                 maxlength="12" 
                                 size="12"
                                 class="form-control"

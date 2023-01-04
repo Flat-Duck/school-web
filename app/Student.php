@@ -61,10 +61,10 @@ protected $searchableFields = ['*'];
             'name' => 'required|string|max:255|regex:/^[\pL\s\-]+$/u',
             'birth_date' => 'required|date',
             'gender' => 'required',
-            'phone'=> 'required|numeric|max:10|min:10',
+            'phone'=> 'required|numeric',
             'room_id' => 'required',
             'email' => 'required|email',
-            'n_id'=>'required|numeric|max:12|min:12|unique:students,n_id,'.$id,
+            'n_id'=>'required|numeric|unique:students,n_id,'.$id,
            // 'is_active'  => 'boolean',
         ];
     }
