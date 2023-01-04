@@ -63,7 +63,7 @@
                 </div>
                 <div class="form-group">
                     <label for="email">البريد الالكتروني</label>
-                    <input type="text"
+                    <input type="email"
                         class="form-control"
                         name="email"
                         required
