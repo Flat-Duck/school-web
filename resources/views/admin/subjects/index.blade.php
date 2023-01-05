@@ -33,7 +33,7 @@
                                    <span class="btn btn-warning">   <i class="fa fa-pencil-square-o"></i></span>
                                 </a>
 
-                                <form action="{{ route('admin.subjects.destroy', ['subject' => $subject->id]) }}"
+                                {{-- <form action="{{ route('admin.subjects.destroy', ['subject' => $subject->id]) }}"
                                     method="POST"
                                     class="inline pointer"
                                 >
@@ -43,7 +43,7 @@
                                     <a onclick="if (confirm('هل انت متأكد من حدف المادة?')) { this.parentNode.submit() }">
                                        <span class="btn btn-danger">    <i class="fa fa-trash-o"></i></span>
                                     </a>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr>
                     @empty
