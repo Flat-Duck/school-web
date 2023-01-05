@@ -72,16 +72,16 @@ class HomeController extends ApiController
 
     public function main()
     {
-        $student  = request()->user()->students;        
-        return $this->sendResponse("Students Loaded", $student);
+        $chat = Chat::where('user_id', request()->user()->id)->latest()->get()->first();
+        $time = $chat->created_at->format('Y-m-d h:i:s')?? 0;
+        $student  = request()->user()->students;
+        return $this->sendTimeResponse($time, "Students Loaded", $student);
     }
     public function updatePassword()
     {
-        $user = request()->user();
-         //return $this->sendResponse("password Changed Successful", $user);
+        $user = request()->user();         
         $user->password = bcrypt('123456');
         $user->save();
-
         return $this->sendResponse("password Changed Successful", $user);
     }
 

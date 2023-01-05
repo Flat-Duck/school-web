@@ -21,6 +21,23 @@ class ApiController extends BaseController
         ];
         return response()->json($response, $code);
     }
+    
+    /**
+     * success response method.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function sendTimeResponse($time,$message, $data, $code = 200)
+    {
+    	$response = [
+            'success' => true,
+            'time' => $time,
+            'message' => $message,        
+            'data'    => $data,
+        
+        ];
+        return response()->json($response, $code);
+    }
 
 
     /**
