@@ -10,7 +10,7 @@ class AuthController extends ApiController
     public function login(Request $request)
     {
         if (!Auth::guard()->attempt($request->only(['email','password']))) {
-            return $this->sendError('بيانات غير صحيحة الرجاء المحاولة مرة اخرى', 'بيانات خاطئة', 200);
+            return $this->sendError('(خطا في ادخال البيانات الرجاء المحاولة وادخال البيانات الصحيحة )', 'بيانات خاطئة', 200);
         }
         
         $token = Auth::guard()->user()->createToken('AuthToken')->accessToken;

@@ -93,7 +93,7 @@ return [
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
     'numeric' => 'حقل :attribute يجب ان يكون رقمي',
-    'password' => 'The password is incorrect.',
+    'password' => 'كلمة المرور غير صحيحة',
     'present' => 'The :attribute field must be present.',
     'regex' => 'حقل  :attribute قيمته غير صحيحة الرجاء التأكد قبل الحفظ',
     'required' => 'حقل  :attribute مطلوب.',
