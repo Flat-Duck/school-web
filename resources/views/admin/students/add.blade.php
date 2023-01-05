@@ -78,7 +78,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email">البريد الالكتروني الخاص بولي الامر</label>
-                        <input type="email"
+                        <input type="text"
                             class="form-control"
                             name="email"
                             required
