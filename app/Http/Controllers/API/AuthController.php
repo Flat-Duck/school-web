@@ -10,10 +10,10 @@ class AuthController extends ApiController
     public function login(Request $request)
     {
         if (!Auth::guard()->attempt($request->only(['email','password']))) {
-            return $this->sendError('not Authrized', 'Invalid login Data', 200);
+            return $this->sendError('بيانات غير صحيحة الرجاء المحاولة مرة اخرى', 'بيانات خاطئة', 200);
         }
         
         $token = Auth::guard()->user()->createToken('AuthToken')->accessToken;
-        return $this->sendResponse("Login Succefull", ['accessToken' => $token]);
+        return $this->sendResponse("تم تسجيل الدخول بنجاح", ['accessToken' => $token]);
     }
 }
