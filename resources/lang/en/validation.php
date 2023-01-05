@@ -95,7 +95,7 @@ return [
     'numeric' => 'حقل :attribute يجب ان يكون رقمي',
     'password' => 'The password is incorrect.',
     'present' => 'The :attribute field must be present.',
-    'regex' => 'The :attribute format is invalid.',
+    'regex' => 'حقل  :attribute قيمته غير صحيحة الرجاء التأكد قبل الحفظ',
     'required' => 'حقل  :attribute مطلوب.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
