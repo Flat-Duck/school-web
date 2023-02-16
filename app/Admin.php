@@ -110,9 +110,10 @@ protected $searchableFields = ['*'];
     public static function getList($search = null)
     {
         return static::search($search)
-            ->latest()
+        ->orderBy('created_at', 'ASC')
             ->paginate(10)
-            ->withQueryString();
+            ->withQueryString()
+            ;
         
     }
 }

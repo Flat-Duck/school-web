@@ -56,6 +56,19 @@ class LoginController extends Controller
         return Auth::guard('admin');
     }
 
+
+    /**
+     * Get the needed authorization credentials from the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function credentials(\Illuminate\Http\Request $request)
+    {
+        //return $request->only($this->username(), 'password');
+        return ['username' => $request->{$this->username()}, 'password' => $request->password, 'is_active' => 1];
+    }
+
     /**
      * Log the user out of the application.
      *

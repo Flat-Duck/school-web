@@ -146,6 +146,22 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'n_id'=> 'الرقم الوطني',
+        'name'=> 'الاسم',
+        'password'=> 'كلمة المرور',
+        'department'=> 'التخصص',
+        'email'=> 'البريد الالكتروني',
+        'phone'=> 'رقم الهاتف',   
+        'birth_date',
+        'gender'=> 'الجنس',                
+        'is_active'=> 'التفعيل',
+        'day'=> 'اليوم', 
+        'content'=> 'المحتوى',
+        'date'=> 'التاريخ',
+        'value'=> 'القيمة',
+        'period'=> 'الفترة', 
+        'message'=> 'الرسالة'
+    ],
 
 ];
