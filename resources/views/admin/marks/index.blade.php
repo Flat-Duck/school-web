@@ -39,6 +39,11 @@
                                     <a href="{{ route('admin.marks.create', ['student_id' => $student->id]) }}">
                                         <span class="btn btn-warning">   <i class="fa fa-pencil-square-o"></i></span>
                                     </a>
+
+                                    <a href="{{ route('admin.students.show', ['student' => $student->id]) }}">
+                                        <span class="btn btn-info">   <i class="fa fa-eye"></i></span>
+                                     </a>
+     
                                 </td>
                             </tr>
                         </tbody>

@@ -76,6 +76,17 @@ class StudentController extends Controller
         return view('admin.students.edit', compact('student','grades','rooms'));
     }
 
+        /**
+     * Show the form for editing the specified Student
+     *
+     * @param \App\Student $student
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Student $student)
+    {    
+        return view('admin.students.show', compact('student'));
+    }
+
     /**
      * Update the Student
      *
